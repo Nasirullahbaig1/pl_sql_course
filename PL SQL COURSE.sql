@@ -10,3 +10,14 @@
 
 --Iteration (LOOP)
 --Handeling exceptions
+    --system defined exceptions
+    --user defined exceptions
+--Record type
+--cursor
+    --implicit cursor
+    --explicit cursor
+
+--procedure
+--function
+--package
+
