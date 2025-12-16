@@ -26,6 +26,11 @@
     --Variable sized array or VARRAYs
     --Associated Arrays
 
+--Introduction to PL/SQL
+--Anonymous PL/SQL block:
+--DECLARE
+--variable declaration goes here
+
 
 
 
