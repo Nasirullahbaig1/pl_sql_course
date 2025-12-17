@@ -31,6 +31,12 @@
 --DECLARE
 --variable declaration goes here
 
+DECLARE
+    V_NUM NUMBER;
+    V_VARCAHR2 VARCHAR2(100);
+    V_EMP_ID employees.emp_id%TYPE;
+    V_EMP_FIRSTNAME employees.firstname%TYPE;
+    
 
 
 
