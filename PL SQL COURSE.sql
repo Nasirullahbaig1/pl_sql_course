@@ -55,6 +55,22 @@ BEGIN
     
     dbms_output.put_line('Sum of a and b = ' || c);
 END;
+
+--Program to find the greater number
+DECLARE 
+    x int;
+    y int;
+    z int;
+BEGIN
+    x:=&x;
+    y:=&y;
+    if(x>y)
+    then
+    dbms_output.put_line('x is greater then y');
+    else
+    dbms_output.put_line('y is greater then x');
+    end if;
+END;
     
     
     
