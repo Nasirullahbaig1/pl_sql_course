@@ -42,6 +42,21 @@ BEGIN
     dbms_output.put_line('V_NUM_D' || ' = ' || V_NUM_D);
 END;
 /
+
+--Program to find the sum of two numbers
+DECLARE
+    a int;
+    b int;
+    c int;
+BEGIN
+    a:=&a;
+    b:=&b;
+    c:=a+b;
+    
+    dbms_output.put_line('Sum of a and b = ' || c);
+END;
+    
+    
     
 
 
