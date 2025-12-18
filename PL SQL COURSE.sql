@@ -71,8 +71,12 @@ BEGIN
     dbms_output.put_line('y is greater then x');
     end if;
 END;
-    
-    
+
+--PL/SQL    
+    --FUNCTION
+    --PROCEDURE
+    --TRIGGER
+    --CURSOR
     
 
 
