@@ -77,8 +77,35 @@ END;
     --PROCEDURE
     --TRIGGER
     --CURSOR
-    
 
+CREATE Table department(
+    dep_id number(3),
+    dep_name varchar2 (100),
+    dep_city varchar2 (100)
+)
+
+--declare one variable V_num_days as number
+--declare one variable V_num_months as number default value as 3
+--declare one variable V_birthday as date, not null, default value should be 2002-03-18
+--try to update the V_birthday to null and check the result
+--create one constant as V_pie_value and default it using assignment operator to 3.14.
+--create the variable to store id, name, and city of the department.
+--make id as constant with value =1, and department city as not null and initialize with lahore.
+
+DECLARE
+    V_num_days NUMBER;
+    V_num_months NUMBER DEFAULT 3;
+    V_birthday DATE NOT NULL DEFAULT DATE '2002-03-18';
+    V_pie_value CONSTANT NUMBER(3,2) := 3.14;
+    V_DEPT_ID CONSTANT department.dep_id%TYPE :=1;
+    V_DEPT_NAME department.dep_name%TYPE;
+    V_DEPT_CITY department.dep_city%TYPE NOT NULL :='Lahore';   
+    
+BEGIN
+    --V_birthday:= null;
+    null;
+END;
+/
 
 
 
