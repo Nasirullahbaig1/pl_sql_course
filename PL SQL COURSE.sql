@@ -139,7 +139,9 @@ END;
 --use the variable from variable decleration assignment practiacl
 --assign any update value to all the variables except constant variables.
 --add 2 months to the existing v_birthday and assing it back to v_birthday.
---assign the name of the department and city 
+--assign the name of the department and city having max dept id in the departments table.
+--assign the month and date of the existing value of v_birthday to v_num_day and v_num_month.
+
 SET SERVEROUTPUT ON;
 DECLARE
     V_num_days NUMBER;
@@ -170,6 +172,11 @@ BEGIN
     FROM department ORDER BY dep_id desc fetch first row only;
     dbms_output.put_line('V_DEPT_NAME = ' || V_DEPT_NAME);
     dbms_output.put_line('V_DEPT_CITY = ' || V_DEPT_CITY);
+    
+    V_num_days := TO_CHAR(V_birthday,'DD');
+    V_num_months := TO_CHAR(V_birthday, 'MM');
+    dbms_output.put_line('V_num_days = ' || V_num_days);
+    dbms_output.put_line('V_num_months = ' || V_num_months);
 END;
 /
 
