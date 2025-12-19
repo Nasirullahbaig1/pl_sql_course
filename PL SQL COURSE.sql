@@ -84,6 +84,11 @@ CREATE Table department(
     dep_city varchar2 (100)
 )
 
+insert into department(dep_id, dep_name, dep_city)
+values(1, 'ICT', 'Chitral');
+
+select * from department;
+
 --declare one variable V_num_days as number
 --declare one variable V_num_months as number default value as 3
 --declare one variable V_birthday as date, not null, default value should be 2002-03-18
@@ -155,6 +160,14 @@ BEGIN
     dbms_output.put_line('V_num_days = ' || V_num_days);
     dbms_output.put_line('V_num_months = ' || V_num_months);
     dbms_output.put_line('V_birthday = ' || V_birthday);
+    dbms_output.put_line('V_DEPT_NAME = ' || V_DEPT_NAME);
+    dbms_output.put_line('V_DEPT_CITY = ' || V_DEPT_CITY);
+    
+    V_birthday := add_months(V_birthday,2);
+    dbms_output.put_line('V_birthday = ' || V_birthday);
+    
+    SELECT dep_name, dep_city INTO V_DEPT_NAME, V_DEPT_CITY
+    FROM department ORDER BY dep_id desc fetch first row only;
     dbms_output.put_line('V_DEPT_NAME = ' || V_DEPT_NAME);
     dbms_output.put_line('V_DEPT_CITY = ' || V_DEPT_CITY);
 END;
