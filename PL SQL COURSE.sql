@@ -135,7 +135,7 @@ END;
 --assign any update value to all the variables except constant variables.
 --add 2 months to the existing v_birthday and assing it back to v_birthday.
 --assign the name of the department and city 
-
+SET SERVEROUTPUT ON;
 DECLARE
     V_num_days NUMBER;
     V_num_months NUMBER DEFAULT 3;
@@ -151,6 +151,12 @@ BEGIN
     V_birthday := date'2002-03-05';
     V_DEPT_NAME := 'HR';
     V_DEPT_CITY := 'Delhi';
+    
+    dbms_output.put_line('V_num_days = ' || V_num_days);
+    dbms_output.put_line('V_num_months = ' || V_num_months);
+    dbms_output.put_line('V_birthday = ' || V_birthday);
+    dbms_output.put_line('V_DEPT_NAME = ' || V_DEPT_NAME);
+    dbms_output.put_line('V_DEPT_CITY = ' || V_DEPT_CITY);
 END;
 /
 
