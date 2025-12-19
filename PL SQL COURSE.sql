@@ -107,8 +107,28 @@ BEGIN
 END;
 /
 
+--Variable assignment in PL/SQL
+--There are three primary ways to perform these assignments.
 
+--Using := operator
+--variable_name := value;
+DECLARE
+   v_count NUMBER := 10; -- Initial assignment
+BEGIN
+   v_count := v_count + 1; -- Update value
+END;
+/
 
+--Using INTO operator:
+    --SELECT column_name INTO variable_name
+    --FROM .....
+    --Multiple variable assignments is allowed using INTO clause.
+DECLARE
+   v_emp_name VARCHAR2(50);
+BEGIN
+   SELECT last_name INTO v_emp_name FROM employees WHERE employee_id = 100;
+END;
+/
 
 
 
