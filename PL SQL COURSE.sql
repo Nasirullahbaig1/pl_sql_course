@@ -130,7 +130,29 @@ BEGIN
 END;
 /
 
+--Practcal on variable assignment
+--use the variable from variable decleration assignment practiacl
+--assign any update value to all the variables except constant variables.
+--add 2 months to the existing v_birthday and assing it back to v_birthday.
+--assign the name of the department and city 
 
+DECLARE
+    V_num_days NUMBER;
+    V_num_months NUMBER DEFAULT 3;
+    V_birthday DATE NOT NULL DEFAULT DATE '2002-03-18';
+    V_pie_value CONSTANT NUMBER(3,2) := 3.14;
+    V_DEPT_ID CONSTANT department.dep_id%TYPE :=1;
+    V_DEPT_NAME department.dep_name%TYPE;
+    V_DEPT_CITY department.dep_city%TYPE NOT NULL :='Lahore';   
+    
+BEGIN
+    V_num_days := 20;
+    V_num_months := 10;
+    V_birthday := date'2002-03-05';
+    V_DEPT_NAME := 'HR';
+    V_DEPT_CITY := 'Delhi';
+END;
+/
 
 
 
