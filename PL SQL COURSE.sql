@@ -184,6 +184,29 @@ END;
 --Variable assignment can be done repetatively.
 --all SQL operations can be done on the variable like they can be used in 
 --SELECT, UPDATE, DELECT statements too.
+CREATE Table employee(
+    emp_id number(3),
+    emp_name varchar2 (100),
+    salary number (15)
+);
+insert into employee(emp_id, emp_name, salary)
+values(1, 'nasir', 30000);
+insert into employee(emp_id, emp_name, salary)
+values(2, 'mustan', 35000);
+insert into employee(emp_id, emp_name, salary)
+values(3, 'annie', 25000);
+insert into employee(emp_id, emp_name, salary)
+values(4, 'faizan', 44000);
+insert into employee(emp_id, emp_name, salary)
+values(5, 'aftab', 60000);
+
+DECLARE
+    v_salary employee.salary%type;
+BEGIN
+    select max(salary) into v_salary from employee;
+    dbms_output.put_line('v_salary = ' || v_salary);
+END;
+/
 
 
 
