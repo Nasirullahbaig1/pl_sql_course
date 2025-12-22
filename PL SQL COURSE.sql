@@ -180,6 +180,10 @@ BEGIN
 END;
 /
 
+--Working with variables
+--Variable assignment can be done repetatively.
+--all SQL operations can be done on the variable like they can be used in 
+--SELECT, UPDATE, DELECT statements too.
 
 
 
