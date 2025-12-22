@@ -202,11 +202,26 @@ values(5, 'aftab', 60000);
 
 DECLARE
     v_salary employee.salary%type;
+    v_half_salary employee.salary%type;
+    v_half_salary_plue employee.salary%type;
+    v_emp_id employee.emp_id%type;
+    v_emp_name employee.emp_name%type;
 BEGIN
     select max(salary) into v_salary from employee;
     dbms_output.put_line('v_salary = ' || v_salary);
+    
+    select count(*)into v_half_salary from employee where salary <= v_salary/2;
+    dbms_output.put_line('v_half_salary_count = ' || v_half_salary);
+    
+    select max(salary) into v_half_salary_plue from employee where salary <= v_salary/2; 
+    dbms_output.put_line('Max v_half_salary_plue = ' || v_half_salary_plue);
+    
+    select emp_id, emp_name into v_emp_id, v_emp_name from employee where salary = v_half_salary_plue;
+    dbms_output.put_line('v_emp_id = ' || v_emp_id);
+    dbms_output.put_line('v_emp_name = ' || v_emp_name);
 END;
 /
+
 
 
 
