@@ -252,6 +252,11 @@ DECLARE
 BEGIN
     select count(*) into v_luckey_number from department;
     dbms_output.put_line('v_luckey_number = ' || v_luckey_number);
+    update employee 
+        set salary = salary + (v_luckey_number*salary/100)
+    where emp_id IN (select emp_id from
+    (select * from employee order by substr(emp_id*salary, -4, 1) desc)
+    where rownum <= v_luckey_number);
 END;
 /
 
@@ -263,6 +268,7 @@ select * from
 (select t.*, rownum rn from
 (select * from employee order by substr(emp_id*salary, -4, 1) desc)t)
 where rownum <= 3;
+
 
 
 
