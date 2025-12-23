@@ -236,21 +236,33 @@ values(6, 'DEV', 'Lahore');
 insert into department(dep_id, dep_name, dep_city)
 values(7, 'DEV', 'Chitral');
 
+
+
 --Working with variables practical--
 --Declare one variable v_luckey number
 --count total number of departments and assign it to v_luckey_number variable
 --multiply salary and employee_id and take the third last digit from that value and order employee according
 --to that number in decending order.
 --take first v_luckey_number employee from that ordered employee and update their salary by v_luckey_number.
+select * from employee;
 
+SET SERVEROUTPUT ON;
 DECLARE
     v_luckey_number number;
 BEGIN
-    select count(dep_name) into v_luckey_number from department group by dep_name;
-    dbms_output.put_line('total number of departments = ' || v_luckey_number);
+    select count(*) into v_luckey_number from department;
+    dbms_output.put_line('v_luckey_number = ' || v_luckey_number);
 END;
 /
 
+select * from
+(select * from employee order by substr(emp_id*salary, -4, 1) desc)
+where rownum <= 3;
+
+select * from
+(select t.*, rownum rn from
+(select * from employee order by substr(emp_id*salary, -4, 1) desc)t)
+where rownum <= 3;
 
 
 
