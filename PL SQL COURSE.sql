@@ -222,12 +222,34 @@ BEGIN
 END;
 /
 
+select * from department;
+insert into department(dep_id, dep_name, dep_city)
+values(2, 'HR', 'Chitral');
+insert into department(dep_id, dep_name, dep_city)
+values(3, 'ICT', 'Lahore');
+insert into department(dep_id, dep_name, dep_city)
+values(4, 'HR', 'Karachi');
+insert into department(dep_id, dep_name, dep_city)
+values(5, 'ICT', 'Chitral');
+insert into department(dep_id, dep_name, dep_city)
+values(6, 'DEV', 'Lahore');
+insert into department(dep_id, dep_name, dep_city)
+values(7, 'DEV', 'Chitral');
+
 --Working with variables practical
 --Declare one variable v_luckey number
 --count total number of departments and assign it to v_luckey_number variable
 --multiply salary and employee_id and take the third last digit from that value and order employee according
 --to that number in decending order.
 --take first v_luckey_number employee from that ordered employee and update their salary by v_luckey_number.
+
+DECLARE
+    
+BEGIN
+
+END
+/
+
 
 
 
