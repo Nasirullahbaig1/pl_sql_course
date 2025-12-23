@@ -222,7 +222,12 @@ BEGIN
 END;
 /
 
-
+--Working with variables practical
+--Declare one variable v_luckey number
+--count total number of departments and assign it to v_luckey_number variable
+--multiply salary and employee_id and take the third last digit from that value and order employee according
+--to that number in decending order.
+--take first v_luckey_number employee from that ordered employee and update their salary by v_luckey_number.
 
 
 
