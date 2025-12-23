@@ -269,7 +269,13 @@ select * from
 (select * from employee order by substr(emp_id*salary, -4, 1) desc)t)
 where rownum <= 3;
 
-
+--comments in pl/sql
+--one line using the  hifen key like -- any thing after this sign would be considered as comment but in a single line.
+/*
+Multiple line comment
+multiple line comments goes like this
+using th star and forward signs
+*/
 
 
 
