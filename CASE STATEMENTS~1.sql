@@ -28,9 +28,16 @@ END;
 --END;
 
 DECLARE 
-    v_number NUMBER;
+    v_number NUMBER := 11;
 BEGIN
-    CASE MOD(v_number,)
+    CASE
+    WHEN MOD(v_number,2)= 0 THEN 
+        DBMS_OUTPUT.PUT_LINE(v_number || ' IS AN EVEN NUMBER');
+    WHEN MOD(v_number,2)= -1 THEN
+        DBMS_OUTPUT.PUT_LINE(v_number || ' INVALID DATA');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(v_number || ' IS AN ODD NUMBER'); 
+    END CASE;
 END;
 /
 
