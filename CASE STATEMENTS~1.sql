@@ -8,4 +8,14 @@
 --      ...
 --      END;
 
---
+SET SERVEROUT ON
+DECLARE
+    v_number number := 10;
+BEGIN
+    CASE MOD(v_number,2)
+        WHEN 0 THEN DBMS_OUTPUT.PUT_LINE(v_number || ' IS AN EVEN NUMBER'); 
+        ELSE DBMS_OUTPUT.PUT_LINE(v_number || ' IS AN ODD NUMBER');
+    END CASE;
+        
+END;
+/
