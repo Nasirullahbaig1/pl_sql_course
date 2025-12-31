@@ -64,7 +64,46 @@ END;
 --Assignment: CASE statement
 
 --update statement to update employee/department
---take any one random 
+--take any one random employee. take emp_id as constant.
+--update the salary of employee to 1000 if name of the employee is between  A-G.
+--else if department id is odd then update its depaetment's city to karachi
+--else update salary of that department's employee to 1500.
+
+SELECT * FROM EMPLOYEE;
+
+SET SERVEROUT ON
+DECLARE
+    V_EMP_ID CONSTANT employee.emp_id%type :=4;
+    V_EMP_NAME employee.emp_name%type;
+BEGIN
+    SELECT EMP_NAME INTO V_EMP_NAME  FROM EMPLOYEE WHERE EMP_ID = V_EMP_ID;
+    CASE
+        WHEN V_EMP_NAME BETWEEN 'A' AND 'G' THEN
+        UPDATE EMPLOYEE SET SALARY = 1000 WHERE EMP_ID = V_EMP_ID;
+        DBMS
+END;
+/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
