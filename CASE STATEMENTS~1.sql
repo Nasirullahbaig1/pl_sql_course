@@ -41,6 +41,25 @@ BEGIN
 END;
 /
 
+--Multiple cases
+DECLARE 
+    v_number NUMBER := 8;
+BEGIN
+    CASE
+    WHEN MOD(v_number,5)= 0 THEN 
+        DBMS_OUTPUT.PUT_LINE(v_number || ' IS DIVISIBLE BY 5');
+    WHEN MOD(v_number,4)= 0 THEN
+        DBMS_OUTPUT.PUT_LINE(v_number || ' IS DIVISIBLE BY 4');
+    WHEN MOD(v_number,3)= 0 THEN
+        DBMS_OUTPUT.PUT_LINE(v_number || ' IS DIVISIBLE BY 3');
+    WHEN MOD(v_number,2)= 0 THEN
+        DBMS_OUTPUT.PUT_LINE(v_number || ' IS DIVISIBLE BY 2');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('NOT DIVISIBLE BY ANY NUMBER LESS THEN 5'); 
+    END CASE;
+END;
+/
+
 
 
 
