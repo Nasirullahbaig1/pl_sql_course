@@ -60,7 +60,11 @@ BEGIN
 END;
 /
 
+--PRACTICAL WITH CASE STATEMETNS
+--Assignment: CASE statement
 
+--update statement to update employee/department
+--take any one random 
 
 
 
