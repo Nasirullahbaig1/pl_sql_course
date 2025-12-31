@@ -98,6 +98,11 @@ END;
 --SECOND PROBLEM 
 
 --take one number in variable
+--add the following number to the variable
+--4 if the number is two digit
+--10 if the number is three digit
+--23 if the number is four digit
+--55 for all other
 DECLARE
     V_NUM NUMBER := 1;
 BEGIN
@@ -105,7 +110,7 @@ BEGIN
         WHEN 2 THEN V_NUM := V_NUM + 4;
         WHEN 3 THEN V_NUM := V_NUM + 10;
         WHEN 4 THEN V_NUM := V_NUM + 23;
-        ELSE V_NUM := V_NUM + 4;
+        ELSE V_NUM := V_NUM + 55;
     END CASE;
 END;
 /
