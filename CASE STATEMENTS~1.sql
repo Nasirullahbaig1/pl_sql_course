@@ -95,6 +95,21 @@ BEGIN
 END;
 /
 
+--SECOND PROBLEM 
+
+--take one number in variable
+DECLARE
+    V_NUM NUMBER := 1;
+BEGIN
+    CASE LENGHT(V_NUM)
+        WHEN 2 THEN V_NUM := V_NUM + 4;
+        WHEN 3 THEN V_NUM := V_NUM + 10;
+        WHEN 4 THEN V_NUM := V_NUM + 23;
+        ELSE V_NUM := V_NUM + 4;
+    END CASE;
+END;
+/
+
 
 
 
