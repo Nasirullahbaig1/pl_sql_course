@@ -16,3 +16,16 @@ BEGIN
     END IF;
 END;
 /
+--GOTO statement should not interface the flow of other conditional flow.
+
+--SYNTAX:
+    --LABEL: <<label_name>>
+    -- GOTO statement: GOTO lable_name
+
+
+
+
+
+
+
+
