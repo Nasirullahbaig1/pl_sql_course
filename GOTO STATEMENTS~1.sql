@@ -22,6 +22,20 @@ END;
     --LABEL: <<label_name>>
     -- GOTO statement: GOTO lable_name
 
+--ASSIGNMENT GOTO STATEMENTS
+
+--USING GOTO STATEMENT PRINT NUMBERS FROM 1 TO 10
+DECLARE
+    V_NUMBER NUMBER :=1;
+BEGIN
+    <<START_P>>
+    DBMS_OUTPUT.PUT_LINE('NUMBER --> ' || V_NUMBER);
+    V_NUMBER := V_NUMBER +1;
+    IF V_NUMBER <= 10 THEN 
+        GOTO START_P;
+    END IF;
+END;
+/
 
 
 
