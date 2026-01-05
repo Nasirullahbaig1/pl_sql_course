@@ -7,3 +7,17 @@
 --      <execute statements>
 --      <EXIST{LABLE_NAME} OR EXIST{LABLE_NAME} WHEN>
 --    END LOOP;
+
+SET SERVEROUT ON;
+DECLARE
+    v_num number := 100;
+BEGIN
+    loop
+        if v_num > 150 then
+            exit;
+        end if;
+        dbms_output.put_line(v_num);
+        v_num := v_num + 1;
+        end loop;
+END;
+/
