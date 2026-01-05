@@ -21,3 +21,14 @@ BEGIN
         end loop;
 END;
 /
+
+DECLARE
+    v_num number := 100;
+BEGIN
+    loop
+        exit when v_num > 160;
+        dbms_output.put_line(v_num);
+        v_num := v_num + 1;
+    end loop;
+END;
+/
