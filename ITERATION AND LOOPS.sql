@@ -70,6 +70,18 @@ END;
 /
 
 
+--Using the basic loop print the second of system less then 48.
+DECLARE
+    V_NUM NUMBER :=0;
+BEGIN
+    LOOP
+        V_NUM := V_NUM + 1;
+        DBMS_OUTPUT.PUT_LINE('Iteration# ' || V_NUM || ' Seconds --> ' || to_char(SYSTIMESTAMP, 'ff3'));
+        exit when V_NUM >= 5000;
+    END LOOP;
+END;
+/
+
 
 
 
