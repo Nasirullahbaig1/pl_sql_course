@@ -32,3 +32,50 @@ BEGIN
     end loop;
 END;
 /
+
+DECLARE 
+    v_num number := 0;
+    v_loop_count number := 0;
+BEGIN
+    loop
+        loop
+            v_loop_count := v_loop_count + 1;
+            v_num := v_num +1;
+            dbms_output.put_line(v_num);
+            exit when v_loop_count >= 3;  
+        end loop;
+        v_loop_count := 0;
+        v_num := v_num + 97;
+        exit when v_num > 500;
+    end loop;
+END;
+/
+
+--PRACTICAL
+
+--Using basic loop create the multiplecation table of 3 upto 10.
+SET SERVEROUT ON;
+DECLARE
+    V_NUM_MUL NUMBER :=3;
+    V_NUM_COUNT NUMBER :=1;
+    V_RESULT NUMBER;
+BEGIN
+    LOOP
+        V_RESULT := V_NUM_MUL * V_NUM_COUNT;
+        DBMS_OUTPUT.PUT_LINE(V_NUM_MUL || ' * ' || V_NUM_COUNT || ' = ' || V_RESULT);
+        V_NUM_COUNT := V_NUM_COUNT +1;
+        EXIT WHEN V_NUM_COUNT >= 11;
+    END LOOP;
+END;
+/
+
+
+
+
+
+
+
+
+
+
+
