@@ -82,6 +82,13 @@ BEGIN
 END;
 /
 
+--FOR LOOP - NUMARIC
+--SYNTAX:
+--FOR index in <IN REVERSE>
+--lower_value .. upper_value
+--LOOP
+--  statement;
+--END LOOP;
 
 
 
