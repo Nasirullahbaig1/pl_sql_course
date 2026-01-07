@@ -99,7 +99,16 @@ BEGIN
 END;
 /
 
-
+DECLARE
+    V_NUM NUMBER :=0;
+BEGIN
+    FOR I IN 1..100
+    LOOP
+        V_NUM := V_NUM + I;
+    END LOOP;
+    DBMS_OUTPUT.PUT_LINE(V_NUM);
+END;
+/
 
 
 
