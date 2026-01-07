@@ -90,6 +90,17 @@ END;
 --  statement;
 --END LOOP;
 
+SET SERVEROUT ON;
+BEGIN
+    FOR I IN 1..10
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(I);
+    END LOOP;
+END;
+/
+
+
+
 
 
 
