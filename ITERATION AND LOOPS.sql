@@ -110,6 +110,22 @@ BEGIN
 END;
 /
 
+--PRACTICAL ON FOR LOOP
+
+--Create the multiplication table of 3 using for loop
+DECLARE
+    V_NUM NUMBER := 3;
+BEGIN
+    FOR I IN 1..10
+    LOOP 
+        V_NUM := V_NUM * I;
+        DBMS_OUTPUT.PUT_LINE(3 || ' * ' || I || ' = ' || V_NUM);
+        V_NUM := 3;
+    END LOOP;
+END;
+/
+
+
 
 
 
