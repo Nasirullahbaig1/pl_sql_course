@@ -116,6 +116,7 @@ END;
 DECLARE
     V_NUM NUMBER := 3;
 BEGIN
+DBMS_OUTPUT.PUT_LINE('TABLE OF 3');
     FOR I IN 1..10
     LOOP 
         V_NUM := V_NUM * I;
