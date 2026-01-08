@@ -208,6 +208,18 @@ BEGIN
 END;
 /
 
+--Using while loop create a series of of x*2 + 5 till 300;
+DECLARE
+    V_NUM NUMBER := 1;
+BEGIN
+    WHILE V_NUM < 300 LOOP
+        DBMS_OUTPUT.PUT_LINE(V_NUM);
+        V_NUM := (V_NUM*2) + 5;
+    END LOOP;
+END;
+/
+
+
 
 
 
