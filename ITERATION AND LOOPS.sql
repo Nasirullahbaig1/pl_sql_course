@@ -185,6 +185,16 @@ BEGIN
 END;
 /
 
+DECLARE
+    V_NUM NUMBER := 0;
+BEGIN
+    WHILE V_NUM < 1000
+    LOOP
+        V_NUM := (V_NUM*2) + 5;
+        DBMS_OUTPUT.PUT_LINE(V_NUM);
+    END LOOP;
+END;
+/
 
 
 
