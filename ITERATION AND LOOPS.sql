@@ -196,6 +196,18 @@ BEGIN
 END;
 /
 
+--Using the while loop print the table of 3
+DECLARE
+     I NUMBER := 1;
+BEGIN
+    WHILE (I<=10) LOOP
+        DBMS_OUTPUT.PUT_LINE('3 * '|| I || ' = '|| (3*I));
+        I := I+1;
+    END LOOP;
+    
+END;
+/
+
 
 
 
