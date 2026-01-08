@@ -211,13 +211,16 @@ END;
 --Using while loop create a series of of x*2 + 5 till 300;
 DECLARE
     V_NUM NUMBER := 1;
+    v_SERIES NUMBER := 0;
 BEGIN
-    WHILE V_NUM < 300 LOOP
-        DBMS_OUTPUT.PUT_LINE(V_NUM);
-        V_NUM := (V_NUM*2) + 5;
+    WHILE (v_SERIES <= 300) LOOP
+        v_SERIES := POWER(V_NUM,2) + 5;
+        DBMS_OUTPUT.PUT_LINE(v_SERIES);
+        V_NUM := V_NUM + 1;
     END LOOP;
 END;
 /
+
 
 
 
