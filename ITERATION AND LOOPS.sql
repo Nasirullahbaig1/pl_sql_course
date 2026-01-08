@@ -174,7 +174,16 @@ END;
 --END LOOP;
 --WHILE loop continues to itrate until the expression in the WHILE is true.
 --EXIT statement can be used to terminate the WHILE loop.
-
+DECLARE
+    V_NUM NUMBER := 0;
+BEGIN
+    WHILE V_NUM < 8
+    LOOP   
+        V_NUM := V_NUM +1;
+        DBMS_OUTPUT.PUT_LINE(V_NUM);
+    END LOOP;
+END;
+/
 
 
 
