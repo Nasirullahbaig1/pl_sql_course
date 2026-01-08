@@ -166,6 +166,14 @@ BEGIN
 END;
 /
 
+--WHILE LOOP
+--SYNTAX:
+--WHILE condition
+--LOOP
+--  statement
+--END LOOP;
+--WHILE loop continues to itrate until the expression in the WHILE is true.
+--EXIT statement can be used to terminate the WHILE loop.
 
 
 
