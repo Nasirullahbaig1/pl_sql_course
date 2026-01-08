@@ -148,6 +148,23 @@ BEGIN
 END;
 /
 
+--Using for loop, print all leap year from starting from 2001 to 1 reverse order.
+DECLARE
+
+BEGIN
+    FOR I IN 1..2001 LOOP
+        IF MOD(I,4) = 0 THEN
+            IF MOD(I, 100) = 0 THEN
+                IF MOD(I, 400) = 0 THEN
+                    DBMS_OUTPUT.PUT_LINE(I);
+                END IF;
+            ELSE
+            DBMS_OUTPUT.PUT_LINE(I);
+            END IF;
+        END IF;
+    END LOOP;
+END;
+/
 
 
 
