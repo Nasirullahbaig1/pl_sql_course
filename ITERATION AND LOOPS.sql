@@ -221,6 +221,20 @@ BEGIN
 END;
 /
 
+--Using while loop insert 10 records into one temp table.
+CREATE TABLE TEMP_TABLE (COL NUMBER);
+SELECT * FROM TEMP_TABLE;
+
+DECLARE
+     V_NUM NUMBER :=1;
+BEGIN
+    WHILE (V_NUM <= 10) LOOP
+        INSERT INTO TEMP_TABLE VALUES(V_NUM*9);
+        V_NUM := V_NUM +1;
+    END LOOP;
+END;
+/
+
 
 
 
