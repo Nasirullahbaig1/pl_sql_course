@@ -126,6 +126,37 @@ DBMS_OUTPUT.PUT_LINE('TABLE OF 3');
 END;
 /
 
+--print all the indivisibel number from 1 to 100. using for loop
+SET SERVEROUT ON;
+DECLARE
+    V_DIVISIBLE NUMBER :=0;
+BEGIN
+    FOR I IN 1..100 LOOP
+        IF I >= 3 THEN
+            FOR J IN 2..I-1 LOOP
+               IF MOD(I,J) = 0 THEN
+                    V_DIVISIBLE := 1;
+                END IF;
+            END LOOP;
+            IF V_DIVISIBLE = 0 THEN
+                DBMS_OUTPUT.PUT_LINE(I);
+            END IF;
+        END IF;
+    END LOOP;
+END;
+/
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
