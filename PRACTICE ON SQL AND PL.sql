@@ -36,7 +36,21 @@ BEGIN
 END;
 /
 
-
+DECLARE
+    A EMP_2.TA%TYPE;
+    B EMP_2.DA%TYPE;
+    T EMP_2.TOTAL%TYPE;
+    I NUMBER :=10;
+BEGIN
+    WHILE I <=12
+    LOOP
+        SELECT TA, DA INTO A, B FROM EMP_2 WHERE EMP_ID = I;
+        T := A + B;
+        UPDATE EMP_2 SET TOTAL = T WHERE EMP_ID = I;
+        I := I + 1;
+    END LOOP;
+END;
+/
 
 
 
