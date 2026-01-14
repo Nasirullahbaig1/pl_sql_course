@@ -12,5 +12,9 @@ DECLARE
 BEGIN
     SELECT SALARY INTO V_SALARY FROM EMPLOYEES WHERE FIRST_NAME = 'Steven';
     --DBMS_OUTPUT.PUT_LINE('NAME --> ' ||V_NAME || ' SALARY --> '|| v_SALARY);
+EXCEPTOIN
+    WHEN no_data_found then
+        select max(salary) into V_SALARY from employees;
+        
 END;
 /
