@@ -6,7 +6,7 @@
 --> if not avalible then show the heighest salary using EXCEPTION BLOCK.
 SELECT * FROM EMPLOYEES;
 
-SET SERVEROUT ON;
+SET SERVEROUTPUT ON;
 DECLARE
     V_SALARY EMPLOYEES.SALARY%TYPE;
 BEGIN
@@ -20,5 +20,24 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('OTHER ERROR');
 END;
 /
+
+--Create a pl/sql block to:
+--Fetch the highest salaried employe of department id 4 --> first name only.
+--if no employe for dep 4 exist then
+--display the dep name of dep_id = 4
+--if the dep not exist then create a dep_id = 4 department having name = 'production' and city = 'lahore'.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
