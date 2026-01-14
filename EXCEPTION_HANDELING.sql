@@ -11,10 +11,12 @@ DECLARE
     V_SALARY EMPLOYEES.SALARY%TYPE;
 BEGIN
     SELECT SALARY INTO V_SALARY FROM EMPLOYEES WHERE FIRST_NAME = 'Steven';
-    --DBMS_OUTPUT.PUT_LINE('NAME --> ' ||V_NAME || ' SALARY --> '|| v_SALARY);
-EXCEPTOIN
+    DBMS_OUTPUT.PUT_LINE('SALARY --> '|| v_SALARY);
+EXCEPTION
     WHEN no_data_found then
-        select max(salary) into V_SALARY from employees;
-        
+        select max(salary) into V_SALARY from EMPLOYEES;
+        DBMS_OUTPUT.PUT_LINE('MAX SALARY --> '|| v_SALARY);
+    WHEN others then
+        DBMS_OUTPUT.PUT_LINE('OTHER ERROR');
 END;
 /
