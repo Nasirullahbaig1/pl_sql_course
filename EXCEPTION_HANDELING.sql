@@ -49,6 +49,12 @@ EXCEPTION
 END;
 /
 
+--RAISE STATEMENTS
+--Raise statements are the user defined exceptions 
+--The job is to catch the user defined exception in EXCEPTION block is similer to the internal block.
+--For example we want our user to insert 500 records and not more then that so we add a 
+--Raise condition there to through an error if he try to add more then that.
+
 
 
 
