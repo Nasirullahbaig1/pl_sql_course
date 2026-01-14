@@ -27,7 +27,16 @@ END;
 --display the dep name of dep_id = 4
 --if the dep not exist then create a dep_id = 4 department having name = 'production' and city = 'lahore'.
 
+SELECT * FROM EMPLOYEES;
+DECLARE
+    V_SALARY EMPLOYEES.SALARY%TYPE;
+BEGIN
+    SELECT SALARY INTO V_SALARY FROM EMPLOYEES WHERE DEPARTMENT_ID = 4;
+    DBMS_OUTPUT.PUT_LINE('FIRST NAME --> ' || FIRST_NAME);
+EXCEPTION
 
+END;
+/
 
 
 
