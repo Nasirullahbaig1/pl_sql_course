@@ -55,7 +55,32 @@ END;
 --For example we want our user to insert 500 records and not more then that so we add a 
 --Raise condition there to through an error if he try to add more then that.
 
+--Practical with RAISE EXCEPTIONS:
+--Assignment
 
+--Create user defined exception too_much_cost and assign -20333 erroe code to it
+--If total salary of dept 'Admin' is greater then 30,000 then rise the too_much_cost exception and print subtitle 
+--messge to handle the exception.
+SET SERVEROUT ON
+DECLARE
+    too_much_cost exception;
+    pragma exception_init('too_much_cost', -20333);
+    
+BEGIN
+    select SUM(E.SALARY) from departments D join EMPLOYEES E ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+    WHERE D.DEPARTMENT_NAME = 'Administration';
+EXCEPTION
+
+END;
+/
+
+select * from departments;
+
+
+--If the total employees having salary > 8000 are more then 10 then rise too_many_rows system exception and 
+--print a suitable message to handle that.
+--In continuation to it, if above exception is not thrown then only check for employees salary > 5000.
+--If its greater then 8 then rise a user defined exception to handle that.
 
 
 
