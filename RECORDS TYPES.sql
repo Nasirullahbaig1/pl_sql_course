@@ -49,14 +49,24 @@ BEGIN
 END;
 /
 
-SELECT * FROM EMPLOYEES ORDER BY SALARY;
+SELECT * FROM EMPLOYEES;
 SELECT * FROM EMPLOYEES WHERE FIRST_NAME = 'TJ';
 
 --RECORD TYPE BASED ON TABLE
 --We can create record type with same structure as Table/Curser.
 --To declare such type of record, we can use %ROWTYPE after table/cursor name as its datatype.
 
-
+DECLARE
+    V_EMP_RECORD EMPLOYEES%ROWTYPE;
+BEGIN
+    SELECT * INTO V_EMP_RECORD FROM EMPLOYEES
+    WHERE FIRST_NAME = 'Lex';
+    dbms_output.put_line('emp_id --> ' || V_EMP_RECORD.employee_id);
+    dbms_output.put_line('Name --> ' || V_EMP_RECORD.first_name);
+    dbms_output.put_line('Salary --> ' || V_EMP_RECORD.salary);
+    dbms_output.put_line('job_id --> ' || V_EMP_RECORD.job_id);
+END;
+/
 
 
 
