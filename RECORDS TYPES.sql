@@ -22,4 +22,44 @@ BEGIN
 END;
 /
 
+--Using the user defined record type 
+--fetch the detail of the highest salaried employe and update the salary, manager, department of it into 
+--lowest salaried
+DECLARE
+    TYPE  TYPE_EMP  IS RECORD
+        (
+        MANAGER_ID  EMPLOYEES.MANAGER_ID%TYPE,
+        SALARY      EMPLOYEES.SALARY%TYPE,
+        DEPT_ID     EMPLOYEES.DEPARTMENT_ID%TYPE
+        );
+    V_UDRT_EMP TYPE_EMP;
+BEGIN
+    SELECT MANAGER_ID, SALARY, DEPARTMENT_ID
+    INTO V_UDRT_EMP 
+    FROM EMPLOYEES 
+    ORDER BY SALARY DESC NULLS LAST FETCH FIRST ROW ONLY;
+    
+    DBMS_OUTPUT.PUT_LINE ('EMP_ID: ' || V_UDRT_EMP.MANAGER_ID);
+    DBMS_OUTPUT.PUT_LINE ('MANAGER_ID: ' || V_UDRT_EMP.SALARY);
+    DBMS_OUTPUT.PUT_LINE ('FIRST_NAME: ' || V_UDRT_EMP.DEPT_ID);
+END;
+/
+
 SELECT * FROM EMPLOYEES;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
