@@ -13,5 +13,6 @@
 
 --cursor should be opened before using it. When we openthe cursor it execte the querry assosiated with it. 
 -- OPEN <cursor_name>
+
 -- after the cursor is opened we use fetch statement to fetch the data of the cursor and store it in a varaible.
 --FETCH <cursor_name> INTO <variable>;
