@@ -61,25 +61,7 @@ END;
 --Create user defined exception too_much_cost and assign -20333 erroe code to it
 --If total salary of dept 'Admin' is greater then 30,000 then rise the too_much_cost exception and print subtitle 
 --messge to handle the exception.
-SET SERVEROUT ON
-DECLARE
-    too_much_cost exception;
-    pragma exception_init('too_much_cost', -20333);
-    v_salary NUMBER := 0;
-BEGIN
-    select SUM(E.SALARY) INTO v_salary 
-    from departments D 
-    join employees E ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
-    WHERE D.DEPARTMENT_NAME = 'Administration';
-
-    if v_salary > 30000 then
-        raise too_much_cost;
-    end if;
-EXCEPTION
-    when too_much_cost then
-    dbms_output.put_line('The cost is too much error');
-END;
-/
+ 
 
 select * from departments;
 select * from employees;
