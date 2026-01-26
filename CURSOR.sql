@@ -1,4 +1,5 @@
 --CURSOR
+--cursor is the work area where the result of a SQL query is stored at server side.
 --CURSOR IS A POINTER TO THE QUERRY.
 --There are two type of Cursor
 
@@ -16,3 +17,5 @@
 
 -- after the cursor is opened we use fetch statement to fetch the data of the cursor and store it in a varaible.
 --FETCH <cursor_name> INTO <variable>;
+
+--
