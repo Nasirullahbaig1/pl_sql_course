@@ -46,15 +46,43 @@ BEGIN
     LOOP
         FETCH C_DEPT INTO C_DATA;
         EXIT WHEN C_DEPT%NOTFOUND;
-        DBMS_OUTPUT.PUT_LINE('DEP_ID --> ' || C_DATA.DEPARTMENT_ID);
         DBMS_OUTPUT.PUT_LINE('DEP_NAME --> ' || C_DATA.DEPARTMENT_NAME);
-    END LOOP;
-    
-    
-    
+    END LOOP;     
 END;
 /
 SELECT * FROM DEPARTMENTS;
+
+--Assignment on Cursor
+
+--Fetch all the employees with salary in odd number and print them in desc order of the salary using cursor.
+SET SERVEROUT ON
+DECLARE
+    CURSOR C_EMP IS 
+        SELECT * FROM EMPLOYEES 
+        WHERE MOD (SALARY, 2) = 1
+        ORDER BY SALARY DESC;
+    V_EMP_DATA C_EMP%ROWTYPE;
+BEGIN
+    OPEN C_EMP;
+    LOOP
+        FETCH C_EMP INTO V_EMP_DATA;
+        EXIT WHEN C_EMP%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('EMP_ID: ' || V_EMP_DATA.EMPLOYEE_ID);
+        DBMS_OUTPUT.PUT_LINE('NAME: ' || V_EMP_DATA.FIRST_NAME);
+        DBMS_OUTPUT.PUT_LINE('SALARY: ' || V_EMP_DATA.SALARY);
+    END LOOP;
+    CLOSE C_EMP;
+END;
+/
+SELECT * FROM EMPLOYEES;
+--Print the details of all the employees with salary in ascending order and stop printing the data when 2nd odd
+--salaried cursor in encountered.
+
+--loop through all the departments one by one and print name of all the employees per department 
+--separated by ">" in single line.
+
+--Loop through all the departments and print the total salary of the employees of that departments.
+
 
 
 
