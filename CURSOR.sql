@@ -20,11 +20,23 @@
 
 --Corsor should be closed as well so it wont perform any background activities.
 --syntax:
---  CLOSE <cursor_name>
+    --CLOSE <cursor_name>
 
 --There are few errors like when the cursor is not open and we try to fetch or close that 
 --it will give us error like 'INVALID CURSOR TYPE'.
 
+--Cursor Attributes
+--ISOPEN:
+    --return TRUE if cursor is open else FALSE.
+--FOUND:
+    --Return TRUE if record fetched successfully,
+    --FALSE if record not fetched,
+    --NULL before first fetch,
+    --INVALID_CURSOR if cursor is not opened.
+--NOTFOUND:
+    --It returns exact opposite to %FOUND.
+--ROWCOUNT:
+    --Returns number of records returned by cursor.
 
 
 
