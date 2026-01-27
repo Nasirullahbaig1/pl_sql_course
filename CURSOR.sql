@@ -75,8 +75,32 @@ BEGIN
 END;
 /
 SELECT * FROM EMPLOYEES;
+
 --Print the details of all the employees with salary in ascending order and stop printing the data when 2nd odd
 --salaried cursor in encountered.
+DECLARE
+    CURSOR C_EMP2 IS
+        SELECT * FROM EMPLOYEES
+        ORDER BY SALARY NULLS LAST;
+    V_EMP_DATA2 C_EMP2%ROWTYPE;
+    V_ODD_SALARY_FLAG NUMBER := 0;
+BEGIN
+    OPEN C_EMP2;
+    LOOP
+        FETCH C_EMP2 INTO V_EMP_DATA2;
+        IF MOD(V_EMP_DATA2.SALARY, 2) = 1 THEN
+            V_ODD_SALARY_FLAG := V_ODD_SALARY_FLAG + 1;
+        END IF;
+        EXIT WHEN (C_EMP2%NOTFOUND OR V_ODD_SALARY_FLAG >= 2);
+        DBMS_OUTPUT.PUT_LINE('EMP_ID: ' || V_EMP_DATA2.EMPLOYEE_ID);
+        DBMS_OUTPUT.PUT_LINE('NAME: ' || V_EMP_DATA2.FIRST_NAME);
+        DBMS_OUTPUT.PUT_LINE('SALARY: ' || V_EMP_DATA2.SALARY);
+        DBMS_OUTPUT.PUT_LINE('---------------------------------------------');
+    END LOOP;
+
+END;
+/
+
 
 --loop through all the departments one by one and print name of all the employees per department 
 --separated by ">" in single line.
