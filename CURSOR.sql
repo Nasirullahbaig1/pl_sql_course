@@ -37,6 +37,24 @@
     --It returns exact opposite to %FOUND.
 --ROWCOUNT:
     --Returns number of records returned by cursor.
+SET SERVEROUT ON  
+DECLARE
+    CURSOR C_DEPT IS SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID;
+    C_DATA C_DEPT%ROWTYPE; 
+BEGIN
+    OPEN C_DEPT;
+    LOOP
+        FETCH C_DEPT INTO C_DATA;
+        EXIT WHEN C_DEPT%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('DEP_ID --> ' || C_DATA.DEPARTMENT_ID);
+        DBMS_OUTPUT.PUT_LINE('DEP_NAME --> ' || C_DATA.DEPARTMENT_NAME);
+    END LOOP;
+    
+    
+    
+END;
+/
+SELECT * FROM DEPARTMENTS;
 
 
 
