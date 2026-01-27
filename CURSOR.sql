@@ -189,8 +189,13 @@ END;
     --...
 --END LOOP;
 
-
- 
+BEGIN
+    FOR i IN (select DEPARTMENT_ID, DEPARTMENT_NAME, LOCATION_ID from departments) loop
+        DBMS_OUTPUT.PUT_LINE(i.DEPARTMENT_ID || ' --> ' || i.DEPARTMENT_NAME || ' --> ' || i.LOCATION_ID);
+    END LOOP;
+END;
+/
+SELECT * FROM DEPARTMENTS;
 
 
 
