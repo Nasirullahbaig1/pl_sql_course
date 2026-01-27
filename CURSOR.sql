@@ -124,7 +124,25 @@ END;
 /
 
 --Loop through all the departments and print the total salary of the employees of that departments.
+DECLARE 
+    CURSOR C_DEPT IS 
+        SELECT * FROM DEPARTMENTS;
+    V_DEPT_DATA C_DEPT%ROWTYPE;
+    V_TOTAL NUMBER;
+BEGIN
+    OPEN C_DEPT;
+    LOOP
+        FETCH C_DEPT INTO V_DEPT_DATA;
+        EXIT WHEN C_DEPT%NOTFOUND;
+        SELECT SUM(SALARY) INTO V_TOTAL
+        FROM EMPLOYEES
+        WHERE DEPARTMENT_ID = V_DEPT_DATA.DEPARTMENT_ID;
+        DBMS_OUTPUT.PUT_LINE(V_DEPT_DATA.DEPARTMENT_ID || ' --> ' || V_TOTAL);
+    END LOOP;
+END;
+/
 SELECT * FROM DEPARTMENTS;
+SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = 20;
 
 
 
