@@ -18,4 +18,6 @@
 -- after the cursor is opened we use fetch statement to fetch the data of the cursor and store it in a varaible.
 --FETCH <cursor_name> INTO <variable>;
 
---
+--Corsor should be closed as well so it wont perform any background activities.
+--syntax:
+--  CLOSE <cursor_name>
