@@ -181,6 +181,15 @@ END;
 --In 1..10 loop
 --FOR Loop creates the record type and assign records from the cursor to the record for each loop.
 
+--FOR index_name in (SELECT query <-- cursor)
+--LOOP
+    --...
+    --Statement to execute for each record of the cursor
+    --Use the index_name as a record type
+    --...
+--END LOOP;
+
+
  
 
 
