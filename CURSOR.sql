@@ -174,11 +174,12 @@ BEGIN
 END;
 /
 
---CURSOR IN FOR LOOP
+--CURSOR IN FOR LOOP:
 --Same as numaric FOR loop,
 --FOR loop with cursor executes once for each record of the cursor.
 --PL/SQL FOR loop automatically open, fetch and close cursor implicitly.
--- In 1..10 loop
+--In 1..10 loop
+--FOR Loop creates the record type and assign records from the cursor to the record for each loop.
 
  
 
