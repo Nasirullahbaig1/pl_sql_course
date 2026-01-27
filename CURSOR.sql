@@ -104,9 +104,27 @@ END;
 
 --loop through all the departments one by one and print name of all the employees per department 
 --separated by ">" in single line.
+DECLARE
+    CURSOR C_DEPT IS
+        SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID;
+    V_DEPT_DATA C_DEPT%ROWTYPE;
+    V_EMP VARCHAR2(3200);
+BEGIN
+    OPEN C_DEPT;
+    LOOP
+        FETCH C_DEPT INTO V_DEPT_DATA;
+        EXIT WHEN C_DEPT%NOTFOUND;
+        SELECT LISTAGG(FIRST_NAME, ' > ') WITHIN GROUP (ORDER BY FIRST_NAME)
+        INTO V_EMP
+        FROM EMPLOYEES  
+        WHERE DEPARTMENT_ID = V_DEPT_DATA.DEPARTMENT_ID; 
+        DBMS_OUTPUT.PUT_LINE(V_DEPT_DATA.DEPARTMENT_ID || ' --> '|| V_DEPT_DATA.DEPARTMENT_NAME || ' --> ' || V_EMP);
+    END LOOP;
+END;
+/
 
 --Loop through all the departments and print the total salary of the employees of that departments.
-
+SELECT * FROM DEPARTMENTS;
 
 
 
