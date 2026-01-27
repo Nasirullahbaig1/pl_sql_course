@@ -144,6 +144,19 @@ END;
 SELECT * FROM DEPARTMENTS;
 SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = 20;
 
+--PARAMETERIZED CURSOR
+--cursor can accept the parameters and that parameters can be used in the cursor query.
+--DECLARE
+    --CURSOR cursor_name (parameter1, parameter2,...)
+    --is
+    --<SELECT query, Use the parameters in the query by thir name>;
+    --..
+--BEGIN
+    --..
+    --OPEN cursor_name (parameter_value,...);
+    --...
+    --...
+
 
 
 
