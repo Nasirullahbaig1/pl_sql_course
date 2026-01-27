@@ -21,3 +21,27 @@
 --Corsor should be closed as well so it wont perform any background activities.
 --syntax:
 --  CLOSE <cursor_name>
+
+--There are few errors like when the cursor is not open and we try to fetch or close that 
+--it will give us error like 'INVALID CURSOR TYPE'.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
