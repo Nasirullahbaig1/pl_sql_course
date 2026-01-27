@@ -173,6 +173,9 @@ BEGIN
     CLOSE CL;
 END;
 /
+
+--CURSOR WITH FOR LOOP
+--
  
 
 
