@@ -15,3 +15,40 @@
         --Calling of procedure
     --Can be done differently
 
+--Example of Local procedure
+SET SERVEROUT ON
+DECLARE
+    NUM1 NUMBER(2);
+    NUM2 NUMBER(2);
+    MUL NUMBER(4);
+    
+    PROCEDURE MULTIPLICATION (NUM1 IN NUMBER, NUM2 IN NUMBER, MUL OUT NUMBER) IS
+BEGIN
+    MUL:= NUM1 * NUM2;   
+    END MULTIPLICATION;
+    
+--CALLING PROCEDURE
+BEGIN
+    NUM1:=&NUM1;
+    NUM2:=&NUM2;
+    MULTIPLICATION (NUM1, NUM2, MUL);
+    DBMS_OUTPUT.PUT_LINE(NUM1 || ' * ' || NUM2 || ' = ' || MUL);
+END;
+/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
