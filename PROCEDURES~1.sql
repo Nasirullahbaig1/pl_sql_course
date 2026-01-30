@@ -76,10 +76,78 @@ END;
 /
 SELECT * FROM USER_PROCEDURES;
 /
-SELECT * FROM USER_SOURCE
-WHERE TYPE LIKE '%PROCEDURE';
+SELECT * FROM USER_SOURCE WHERE TYPE LIKE '%PROCEDURE';
+/
+SELECT * FROM USER_OBJECTS WHERE OBJECT_TYPE = 'PROCEDURE';
+/
+DROP PROCEDURE MY_FIRST_PROC;
+/
+DROP PROCEDURE MY_SECOND_PROC;
 /
 
+--Assignment part-1 : PROCEDURE
+--Create one table to store logs(log_id, log_ts, action_taken)
+--1.Create the procedure to update the salary of the employee by given percentage. (emp_id, dep_id, incerement_percentage as input).
+    --log the details into logs table if provided data is incorrect.
+
+CREATE TABLE LOGS(
+    LOG_ID NUMBER(4),
+    LOG_TS TIMESTAMP,
+    ACTION_TAKEN VARCHAR2(4000)
+);
+/
+CREATE SEQUENCE LOG_SEQ;
+/
+DROP TABLE LOGS;
+/
+/
+CREATE OR REPLACE PROCEDURE P_INCREASE_SALARY
+(
+    P_IN_EMP_ID IN NUMBER,
+    P_IN_DEPT_ID IN DEPARTMENTS.DEPARTMENT_ID%TYPE,
+    P_IN_INCEREMENT_PERCENTAGE IN NUMBER,
+    P_OUT_MESSAGE OUT VARCHAR2
+)
+AS
+V_DEPT_ID DEPARTMENTS.DEPARTMENT_ID%TYPE;
+BEGIN
+    P_OUT_MESSAGE := 'SUCESS';
+    BEGIN
+        SELECT DEPARTMENT_ID INTO V_DEPT_ID FROM EMPLOYEES WHERE EMPLOYEE_ID = P_IN_EMP_ID;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            INSERT INTO LOGS VALUES (LOG_SEQ.NEXTVAL, SYSTIMESTAMP, 'GIVEN EMPLOYEE ID: ' || P_IN_EMP_ID || ' IS NOT VALID.');
+            P_OUT_MESSAGE := 'FAILED';
+        RETURN;
+    END;
+    
+    IF V_DEPT_ID <> P_IN_DEPT_ID THEN
+        INSERT INTO LOGS VALUES (LOG_SEQ.NEXTVAL, SYSTIMESTAMP, 'GIVEN DEPARTMENT ID: ' || P_IN_DEPT_ID || ' IS NOT VALID.');
+        P_OUT_MESSAGE := 'FAILED';
+        RETURN;
+    END IF;
+    
+    UPDATE EMPLOYEES SET SALARY = SALARY +(SALARY * P_IN_INCEREMENT_PERCENTAGE/100)
+    WHERE EMPLOYEE_ID = P_IN_EMP_ID;
+    
+END P_INCREASE_SALARY;
+/
+/
+SELECT * FROM EMPLOYEES;
+SELECT * FROM LOGS;
+
+DECLARE
+    V_OUT_MESSAGE VARCHAR2(100);
+BEGIN
+    P_INCREASE_SALARY(101, 90, 10, V_OUT_MESSAGE); -- 24000
+    DBMS_OUTPUT.PUT_LINE(V_OUT_MESSAGE);
+END;
+/    
+    
+--2. Create the procedure which can be used for login flow. It should accept username(firstname), password(lastname@emp_id)
+    --validtes the data, returns success/failed as an output and make an entry in logs table if failed.
+    
+    
 
 
 
