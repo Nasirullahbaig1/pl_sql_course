@@ -90,10 +90,10 @@ DROP PROCEDURE MY_SECOND_PROC;
 --1.Create the procedure to update the salary of the employee by given percentage. (emp_id, dep_id, incerement_percentage as input).
     --log the details into logs table if provided data is incorrect.
 
-CREATE TABLE LOGS(
-    LOG_ID NUMBER(4),
-    LOG_TS TIMESTAMP,
-    ACTION_TAKEN VARCHAR2(4000)
+CREATE TABLE logs (
+    log_id       NUMBER(4),
+    log_ts       TIMESTAMP,
+    action_taken VARCHAR2(4000)
 );
 /
 CREATE SEQUENCE LOG_SEQ;
@@ -158,12 +158,12 @@ SELECT * FROM EMPLOYEES;
 SELECT * FROM LOGS;
 
 DECLARE
-    V_OUT_MESSAGE VARCHAR2(100);
+    v_out_message VARCHAR2(100);
 BEGIN
-    P_INCREASE_SALARY(101, 90, 10, P_OUT_MESSAGE); -- 24000
-    DBMS_OUTPUT.PUT_LINE(V_OUT_MESSAGE);
+    p_increase_salary(101, 90, 10, v_out_message); -- 24000
+    dbms_output.put_line(v_out_message);
 END;
-/    
+/   
     
 --2. Create the procedure which can be used for login flow. It should accept username(firstname), password(lastname@emp_id)
     --validtes the data, returns success/failed as an output and make an entry in logs table if failed.
