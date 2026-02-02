@@ -118,17 +118,20 @@ BEGIN
         WHEN NO_DATA_FOUND THEN
             INSERT INTO LOGS VALUES (LOG_SEQ.NEXTVAL, SYSTIMESTAMP, 'GIVEN EMPLOYEE ID: ' || P_IN_EMP_ID || ' IS NOT VALID.');
             P_OUT_MESSAGE := 'FAILED';
+        COMMIT;
         RETURN;
     END;
     
     IF V_DEPT_ID <> P_IN_DEPT_ID THEN
         INSERT INTO LOGS VALUES (LOG_SEQ.NEXTVAL, SYSTIMESTAMP, 'GIVEN DEPARTMENT ID: ' || P_IN_DEPT_ID || ' IS NOT VALID.');
         P_OUT_MESSAGE := 'FAILED';
+        COMMIT;
         RETURN;
     END IF;
     
     UPDATE EMPLOYEES SET SALARY = SALARY +(SALARY * P_IN_INCEREMENT_PERCENTAGE/100)
     WHERE EMPLOYEE_ID = P_IN_EMP_ID;
+    COMMIT;
     
 END P_INCREASE_SALARY;
 /
@@ -146,8 +149,7 @@ END;
     
 --2. Create the procedure which can be used for login flow. It should accept username(firstname), password(lastname@emp_id)
     --validtes the data, returns success/failed as an output and make an entry in logs table if failed.
-    
-    
+
 
 
 
