@@ -101,39 +101,57 @@ CREATE SEQUENCE LOG_SEQ;
 DROP TABLE LOGS;
 /
 /
-CREATE OR REPLACE PROCEDURE P_INCREASE_SALARY
-(
-    P_IN_EMP_ID IN NUMBER,
-    P_IN_DEPT_ID IN DEPARTMENTS.DEPARTMENT_ID%TYPE,
-    P_IN_INCEREMENT_PERCENTAGE IN NUMBER,
-    P_OUT_MESSAGE OUT VARCHAR2
-)
-AS
-V_DEPT_ID DEPARTMENTS.DEPARTMENT_ID%TYPE;
+CREATE OR REPLACE PROCEDURE p_increase_salary (
+    p_in_emp_id                IN NUMBER,
+    p_in_dept_id               IN departments.department_id%TYPE,
+    p_in_incerement_percentage IN NUMBER,
+    p_out_message              OUT VARCHAR2
+) AS
+    v_dept_id departments.department_id%TYPE;
 BEGIN
-    P_OUT_MESSAGE := 'SUCESS';
+    p_out_message := 'SUCESS';
     BEGIN
-        SELECT DEPARTMENT_ID INTO V_DEPT_ID FROM EMPLOYEES WHERE EMPLOYEE_ID = P_IN_EMP_ID;
+        SELECT
+            department_id
+        INTO v_dept_id
+        FROM
+            employees
+        WHERE
+            employee_id = p_in_emp_id;
+
     EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            INSERT INTO LOGS VALUES (LOG_SEQ.NEXTVAL, SYSTIMESTAMP, 'GIVEN EMPLOYEE ID: ' || P_IN_EMP_ID || ' IS NOT VALID.');
-            P_OUT_MESSAGE := 'FAILED';
-        COMMIT;
-        RETURN;
+        WHEN no_data_found THEN
+            INSERT INTO logs VALUES ( log_seq.NEXTVAL,
+                                      systimestamp,
+                                      'GIVEN EMPLOYEE ID: '
+                                      || p_in_emp_id
+                                      || ' IS NOT VALID.' );
+
+            p_out_message := 'FAILED';
+            COMMIT;
+            RETURN;
     END;
-    
-    IF V_DEPT_ID <> P_IN_DEPT_ID THEN
-        INSERT INTO LOGS VALUES (LOG_SEQ.NEXTVAL, SYSTIMESTAMP, 'GIVEN DEPARTMENT ID: ' || P_IN_DEPT_ID || ' IS NOT VALID.');
-        P_OUT_MESSAGE := 'FAILED';
+
+    IF v_dept_id <> p_in_dept_id THEN
+        INSERT INTO logs VALUES ( log_seq.NEXTVAL,
+                                  systimestamp,
+                                  'GIVEN DEPARTMENT ID: '
+                                  || p_in_dept_id
+                                  || ' IS NOT VALID.' );
+
+        p_out_message := 'FAILED';
         COMMIT;
         RETURN;
     END IF;
-    
-    UPDATE EMPLOYEES SET SALARY = SALARY +(SALARY * P_IN_INCEREMENT_PERCENTAGE/100)
-    WHERE EMPLOYEE_ID = P_IN_EMP_ID;
+
+    UPDATE employees
+    SET
+        salary = salary + ( salary * p_in_incerement_percentage / 100 )
+    WHERE
+        employee_id = p_in_emp_id;
+
     COMMIT;
-    
-END P_INCREASE_SALARY;
+END p_increase_salary;
 /
 /
 SELECT * FROM EMPLOYEES;
@@ -142,7 +160,7 @@ SELECT * FROM LOGS;
 DECLARE
     V_OUT_MESSAGE VARCHAR2(100);
 BEGIN
-    P_INCREASE_SALARY(101, 90, 10, V_OUT_MESSAGE); -- 24000
+    P_INCREASE_SALARY(101, 90, 10, P_OUT_MESSAGE); -- 24000
     DBMS_OUTPUT.PUT_LINE(V_OUT_MESSAGE);
 END;
 /    
