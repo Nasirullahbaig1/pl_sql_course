@@ -171,6 +171,7 @@ END;
     
 CREATE OR REPLACE PROCEDURE p_validate_login (
     p_in_username VARCHAR2,
+    p_in_lastname VARCHAR2,
     p_in_password VARCHAR2,
     p_out_result  OUT VARCHAR2
 ) AS
@@ -185,7 +186,7 @@ BEGIN
     FROM
         employees
     WHERE
-        first_name = p_in_username;
+        first_name = p_in_username AND LAST_NAME = p_in_lastname;
 
     IF v_password <> p_in_password THEN
         p_out_result := 'failed';
@@ -211,15 +212,17 @@ EXCEPTION
 END;
 /
 /
+SET SERVEROUT ON;
 --calling the procedure
 DECLARE
     v_out_message VARCHAR2(100);
 BEGIN
-    p_validate_login('Steven', 'King@100', v_out_message);
+    p_validate_login('Alexander', 'Hunold', 'Hunold@103', v_out_message);
     dbms_output.put_line(v_out_message);
 END;
 / 
 SELECT * FROM EMPLOYEES;
+SELECT * FROM LOGS;
 /
 
 
