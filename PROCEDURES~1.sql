@@ -157,6 +157,7 @@ END p_increase_salary;
 SELECT * FROM EMPLOYEES;
 SELECT * FROM LOGS;
 
+--calling the procedure
 DECLARE
     v_out_message VARCHAR2(100);
 BEGIN
@@ -172,25 +173,54 @@ CREATE OR REPLACE PROCEDURE p_validate_login (
     p_in_username VARCHAR2,
     p_in_password VARCHAR2,
     p_out_result  OUT VARCHAR2
-) AS 
-
+) AS
+    v_password VARCHAR2(100);
 BEGIN
-    SELECT LASTNAME || '@' || EMPLOYEE_ID FROM EMPLOYEE WHERE FIRSTNAME = p_in_username;
-    
+    p_out_result := 'success';
+    SELECT
+        last_name
+        || '@'
+        || employee_id
+    INTO v_password
+    FROM
+        employees
+    WHERE
+        first_name = p_in_username;
+
+    IF v_password <> p_in_password THEN
+        p_out_result := 'failed';
+        ROLLBACK;
+        INSERT INTO logs VALUES ( log_seq.NEXTVAL,
+                                  systimestamp,
+                                  'p_validate_login --> password incorrct: ' || p_in_username );
+
+        COMMIT;
+    END IF;
+
 EXCEPTION
-    WHEN NO_DATA_FOUND THEN 
-    INSERT INTO LOGS VALUES(
-        log_seq.NEXTVAL,
-        systimestamp,
-        'p_validate_login --> firstname: ' || P_IN_USERNAME || ' invalid.'
-    )
-    
-end;
+    WHEN no_data_found THEN
+        p_out_result := 'failed';
+        ROLLBACK;
+        INSERT INTO logs VALUES ( log_seq.NEXTVAL,
+                                  systimestamp,
+                                  'p_validate_login --> firstname: '
+                                  || p_in_username
+                                  || ' invalid.' );
+
+        COMMIT;
+END;
 /
 /
-
-
-
+--calling the procedure
+DECLARE
+    v_out_message VARCHAR2(100);
+BEGIN
+    p_validate_login('Steven', 'King@100', v_out_message);
+    dbms_output.put_line(v_out_message);
+END;
+/ 
+SELECT * FROM EMPLOYEES;
+/
 
 
 
