@@ -164,10 +164,30 @@ BEGIN
     dbms_output.put_line(v_out_message);
 END;
 /   
-    
+/    
 --2. Create the procedure which can be used for login flow. It should accept username(firstname), password(lastname@emp_id)
     --validtes the data, returns success/failed as an output and make an entry in logs table if failed.
+    
+CREATE OR REPLACE PROCEDURE p_validate_login (
+    p_in_username VARCHAR2,
+    p_in_password VARCHAR2,
+    p_out_result  OUT VARCHAR2
+) AS 
 
+BEGIN
+    SELECT LASTNAME || '@' || EMPLOYEE_ID FROM EMPLOYEE WHERE FIRSTNAME = p_in_username;
+    
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN 
+    INSERT INTO LOGS VALUES(
+        log_seq.NEXTVAL,
+        systimestamp,
+        'p_validate_login --> firstname: ' || P_IN_USERNAME || ' invalid.'
+    )
+    
+end;
+/
+/
 
 
 
