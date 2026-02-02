@@ -225,6 +225,122 @@ SELECT * FROM EMPLOYEES;
 SELECT * FROM LOGS;
 /
 
+--PRACTICAL ASSIGNMENT IN PL/SQL PART-2
+
+--1. Create the procedure to update the department of the lowest salaried employee of the department of the passed (input) employee
+--   to the next highest avarage salaried department. Insert the logs into log table (assigment_logs).
+CREATE TABLE assignment_logs (
+    log_id       NUMBER(4),
+    log_ts       TIMESTAMP,
+    action_taken VARCHAR2(4000)
+);
+/
+CREATE SEQUENCE assignment_logs_seq;
+/
+/
+create or replace PROCEDURE p_department_update (
+    p_emp_id          IN employees.employee_id%TYPE,
+    p_out_status_code OUT NUMBER
+) AS
+    v_dept_id    department.department_id%TYPE;
+    v_emp_id     employees.employee_id%TYPE;
+    v_avg_salary NUMBER;
+BEGIN
+    p_out_status_code := 0;
+    BEGIN
+        SELECT DEPARTMENT_ID FROM EMPLOYEES WHERE EMPLOYEE_ID = P_EMP_ID;
+    EXCEPTION
+        WHEN DATA_NOT_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('EMPLOYEE ID: 'P_EMP_ID || ' NOT FOUND!!');
+p_out_status_code := -1;
+
+ROLLBACK;
+
+INSERT INTO assignment_logs VALUES ( assignment_logs_seq.NEXTVAL,
+                                     systimestamp,
+                                     'INVALID EMPLOYEE ID' );
+
+COMMIT;
+
+RETURN;
+
+end;
+
+IF v_dept_id IS NULL THEN
+    p_out_status_code := -1;
+    dbms_output.put_line('DEPARTMENT OF EMPLOYEE ID: '
+                         || p_emp_id
+                         || ' IS NULL..');
+    ROLLBACK;
+    INSERT INTO assignment_logs VALUES ( assignment_logs_seq.NEXTVAL,
+                                         systimestamp,
+                                         'DEPARTMENT ID IS NULL' );
+
+    COMMIT;
+    RETURN;
+END IF;
+
+SELECT
+    employee_id
+INTO v_emp_id
+FROM
+    employees
+WHERE
+    department_id = v_dept_id
+ORDER BY
+    salary,
+    employee_id
+FETCH first ROW ONLY;
+
+SELECT
+    AVG(salary)
+INTO v_avg_salary
+FROM
+    employees
+WHERE
+    department_id = v_dept_id;
+
+BEGIN
+    SELECT
+        department_id
+    INTO v_dept_id
+    FROM
+        employees
+    WHERE
+        department_id IS NOT NULL
+    GROUP BY
+        department_id
+    HAVING
+        AVG(salary) > v_avg_salary
+    ORDER BY
+        AVG(salary)
+    FETCH first ROW ONLY;
+
+EXCEPTION
+    WHEN no_data_found THEN
+        p_out_status_code := -1;
+        dbms_output.put_line('DEPARTMENT OF EMPLOYEE ID: '
+                             || p_emp_id
+                             || ' IS THE HEIGHEST AVAARAGE SALARY DEPARTMENT');
+        ROLLBACK;
+        INSERT INTO assignment_logs VALUES ( assignment_logs_seq.NEXTVAL,
+                                             systimestamp,
+                                             'DEPARTMENT ID IS FROM HEIGHEST AVG SALARY' );
+
+        end;
+        UPDATE employees
+        SET
+            department_id = v_dept_id
+        WHERE
+            employee_id = v_emp_id;
+
+END p_department_update;
+/
+
+
+
+--2. Create the procedure to devide the salary decerements among all the employees of the department using thir salaryt ratio.
+--   department name and total salary decrement for department as an input. log the details into log tabel(assignemt_logs).
 
 
 
