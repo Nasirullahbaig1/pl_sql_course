@@ -242,16 +242,16 @@ create or replace PROCEDURE p_department_update (
     p_emp_id          IN employees.employee_id%TYPE,
     p_out_status_code OUT NUMBER
 ) AS
-    v_dept_id    department.department_id%TYPE;
+    v_dept_id    departments.department_id%TYPE;
     v_emp_id     employees.employee_id%TYPE;
     v_avg_salary NUMBER;
 BEGIN
     p_out_status_code := 0;
     BEGIN
-        SELECT DEPARTMENT_ID FROM EMPLOYEES WHERE EMPLOYEE_ID = P_EMP_ID;
+        SELECT DEPARTMENT_ID INTO v_dept_id FROM EMPLOYEES WHERE EMPLOYEE_ID = P_EMP_ID;
     EXCEPTION
-        WHEN DATA_NOT_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('EMPLOYEE ID: 'P_EMP_ID || ' NOT FOUND!!');
+        WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('EMPLOYEE ID: '|| P_EMP_ID || ' NOT FOUND!!');
 p_out_status_code := -1;
 
 ROLLBACK;
@@ -288,8 +288,7 @@ FROM
 WHERE
     department_id = v_dept_id
 ORDER BY
-    salary,
-    employee_id
+    salary
 FETCH first ROW ONLY;
 
 SELECT
@@ -336,7 +335,18 @@ EXCEPTION
 
 END p_department_update;
 /
-
+/
+SELECT * FROM assignment_logs;
+SELECT * FROM EMPLOYEES;
+/
+SET SERVEROUT ON;
+--calling the procedure
+DECLARE
+    v_out_message NUMBER;
+BEGIN
+    p_department_update(107, v_out_message);
+    dbms_output.put_line(v_out_message);
+END;
 
 
 --2. Create the procedure to devide the salary decerements among all the employees of the department using thir salaryt ratio.
