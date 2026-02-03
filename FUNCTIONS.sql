@@ -22,3 +22,10 @@
 --The only difference in term of parameter between procedure and function is the return paremeter.
 --There is one default return value which can be used by calling code directly.
 
+--CALLING THE FUNCTION
+--Function can be called form almost anywhere, While calling of procedure is restricted.
+--Calling the function in assignment:
+--variable_name := function name(....);
+--Calling the function from any clause of the querry:
+--select function_name(..), ...from table_clause
+--WHERE some_value/expression/column_value = function_name(..)
