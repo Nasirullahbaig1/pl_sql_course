@@ -67,6 +67,9 @@ END FN_MY_FIRST_FUNCTION;
 --USER_SOURCE, ALL_SOURCE, DBA_SOURCE
 --To drop function, use DROP FUNCTION function_name;
 
+select * from USER_PROCEDURES WHERE OBJECT_TYPE = 'FUNCTION';
+select * from user_objects where object_type = 'FUNCTION';
+
 
 
 
