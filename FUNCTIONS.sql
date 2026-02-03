@@ -29,3 +29,7 @@
 --Calling the function from any clause of the querry:
 --select function_name(..), ...from table_clause
 --WHERE some_value/expression/column_value = function_name(..)
+
+--calling the function as boolean expression:
+--IF function_name(..) operator value THEN
+--END IF
