@@ -69,10 +69,28 @@ END FN_MY_FIRST_FUNCTION;
 
 select * from USER_PROCEDURES WHERE OBJECT_TYPE = 'FUNCTION';
 select * from user_objects where object_type = 'FUNCTION';
-
+/
 --ASSIGNMENT PART-1: FUNCTION
 --1. Create the function to return the avarage salary of the passed department and use it in the query.
-
+CREATE OR REPLACE
+FUNCTION FU_DEP_AVG_SALARY(P_IN_DEPT_ID IN DEPARTMENTS.DEPARTMENT_ID%TYPE)
+RETURN NUMBER
+AS 
+    V_AVG_SALARY NUMBER := 0;
+    V_COUNT NUMBER :=0;
+BEGIN
+    SELECT COUNT(1) INTO V_COUNT FROM DEPARTMENTS WHERE DEPARTMENT_ID = P_IN_DEPT_ID;
+    IF V_COUNT = 0 THEN
+        RETURN -1;
+    ELSE
+        SELECT AVG(SALARY) INTO V_AVG_SALARY FROM EMPLOYEES WHERE DEPARTMENT_ID = P_IN_DEPT_ID;
+        RETURN V_AVG_SALARY;
+    END IF;
+END FU_DEP_AVG_SALARY;
+/
+SELECT * FROM EMPLOYEES;
+/
+SELECT D.*, FU_DEP_AVG_SALARY(D.DEPARTMENT_ID) FROM DEPARTMENTS D;
 
 --2. Enhance the function create in assignment #1. to accept the emplyee_id also.
     --one of the input pareameter should be null and other should be not null
