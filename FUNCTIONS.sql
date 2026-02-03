@@ -70,7 +70,15 @@ END FN_MY_FIRST_FUNCTION;
 select * from USER_PROCEDURES WHERE OBJECT_TYPE = 'FUNCTION';
 select * from user_objects where object_type = 'FUNCTION';
 
+--ASSIGNMENT PART-1: FUNCTION
+--1. Create the function to return the avarage salary of the passed department and use it in the query.
 
+
+--2. Enhance the function create in assignment #1. to accept the emplyee_id also.
+    --one of the input pareameter should be null and other should be not null
+    --function should return average salary of department of passed department_id or department of the passed employee_id.
+    
+--3. Create a function to insert the data into logs table and check the outcome by calling/compiling the function.
 
 
 
