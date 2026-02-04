@@ -93,11 +93,34 @@ SELECT * FROM EMPLOYEES;
 SELECT D.*, FU_DEP_AVG_SALARY(D.DEPARTMENT_ID) FROM DEPARTMENTS D;
 SELECT D.*, ROUND(FU_DEP_AVG_SALARY(D.DEPARTMENT_ID)) FROM DEPARTMENTS D where FU_DEP_AVG_SALARY(DEPARTMENT_ID) <> -1;
 SELECT * FROM EMPLOYEES WHERE FU_DEP_AVG_SALARY(DEPARTMENT_ID) < 5000 AND FU_DEP_AVG_SALARY(DEPARTMENT_ID) <> -1;
-
+/
 --2. Enhance the function create in assignment #1. to accept the emplyee_id also.
     --one of the input pareameter should be null and other should be not null
     --function should return average salary of department of passed department_id or department of the passed employee_id.
-    
+CREATE OR REPLACE
+FUNCTION FU_DEP_AVG_SALARY(P_IN_DEPT_ID IN DEPARTMENTS.DEPARTMENT_ID%TYPE, P_IN_EMP_ID IN EMPLOYEES.EMPLOYEE_ID%TYPE)
+RETURN NUMBER
+AS 
+    V_AVG_SALARY NUMBER := 0;
+    V_COUNT NUMBER :=0;
+BEGIN
+    IF (P_IN_DEPT_ID IS NULL AND P_IN_EMP_ID IS NOT NULL) OR (P_IN_DEPT_ID IS NOT NULL AND P_IN_EMP_ID IS NULL) THEN
+        IF P_IN_DEPT_ID IS NOT NULL THEN
+            SELECT COUNT(1) INTO V_COUNT FROM DEPARTMENTS WHERE DEPARTMENT_ID = P_IN_DEPT_ID;
+        ELSE
+            SELECT COUNT(1) INTO V_COUNT FROM EMPLOYEES WHERE EMPLOYEE_ID = P_IN_EMP_ID;
+        END IF;
+        IF V_COUNT = 0 THEN
+            RETURN -1;
+        ELSE
+            SELECT AVG(SALARY) INTO V_AVG_SALARY FROM EMPLOYEES WHERE DEPARTMENT_ID = P_IN_DEPT_ID;
+            RETURN V_AVG_SALARY;
+        END IF;
+    ELSE
+        RETURN -1;
+    END IF;
+END FU_DEP_AVG_SALARY;
+/
 --3. Create a function to insert the data into logs table and check the outcome by calling/compiling the function.
 
 
