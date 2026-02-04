@@ -113,7 +113,9 @@ BEGIN
         IF V_COUNT = 0 THEN
             RETURN -1;
         ELSE
-            SELECT AVG(SALARY) INTO V_AVG_SALARY FROM EMPLOYEES WHERE DEPARTMENT_ID = P_IN_DEPT_ID;
+            SELECT AVG(SALARY) INTO V_AVG_SALARY FROM EMPLOYEES 
+            WHERE DEPARTMENT_ID = CASE WHEN P_IN_DEPT_ID IS NOT NULL THEN P_IN_DEPT_ID ELSE
+                (SELECT DEPARTMENT_ID FROM EMPLOYEES WHERE EMPLOYEE_ID = P_IN_EMP_ID) END;
             RETURN V_AVG_SALARY;
         END IF;
     ELSE
@@ -121,9 +123,27 @@ BEGIN
     END IF;
 END FU_DEP_AVG_SALARY;
 /
+SELECT D.*, FU_DEP_AVG_SALARY(D.DEPARTMENT_ID, NULL) FROM DEPARTMENTS D;
+SELECT D.*, ROUND(FU_DEP_AVG_SALARY(D.DEPARTMENT_ID)) FROM DEPARTMENTS D where FU_DEP_AVG_SALARY(DEPARTMENT_ID) <> -1;
+SELECT * FROM EMPLOYEES WHERE FU_DEP_AVG_SALARY(DEPARTMENT_ID) < 5000 AND FU_DEP_AVG_SALARY(DEPARTMENT_ID) <> -1;
+/
+SELECT * FROM ASSIGNMENT_LOGS;
 --3. Create a function to insert the data into logs table and check the outcome by calling/compiling the function.
+CREATE OR REPLACE FUNCTION p_insert_logs (
+    p_in_log_description IN VARCHAR2
+) RETURN NUMBER AS
+BEGIN
+    INSERT INTO assignment_logs VALUES ( assignment_logs_seq.NEXTVAL,
+                                         systimestamp,
+                                         p_in_log_description );
 
-
+    COMMIT;
+    RETURN 0;
+EXCEPTION
+    WHEN OTHERS THEN
+        RETURN -1;
+END p_insert_logs;
+/
 
 
 
