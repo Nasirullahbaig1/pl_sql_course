@@ -91,6 +91,8 @@ END FU_DEP_AVG_SALARY;
 SELECT * FROM EMPLOYEES;
 /
 SELECT D.*, FU_DEP_AVG_SALARY(D.DEPARTMENT_ID) FROM DEPARTMENTS D;
+SELECT D.*, ROUND(FU_DEP_AVG_SALARY(D.DEPARTMENT_ID)) FROM DEPARTMENTS D where FU_DEP_AVG_SALARY(DEPARTMENT_ID) <> -1;
+SELECT * FROM EMPLOYEES WHERE FU_DEP_AVG_SALARY(DEPARTMENT_ID) < 5000 AND FU_DEP_AVG_SALARY(DEPARTMENT_ID) <> -1;
 
 --2. Enhance the function create in assignment #1. to accept the emplyee_id also.
     --one of the input pareameter should be null and other should be not null
