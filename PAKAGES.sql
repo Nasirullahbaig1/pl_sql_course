@@ -43,6 +43,12 @@
 --  declaration;
 --END pakage_name;
 
+CREATE OR REPLACE PACKAGE PKG_FISRT_PACKAGE AS
+    
+END PKG_FISRT_PACKAGE;
+/
+
+
 
 
 
