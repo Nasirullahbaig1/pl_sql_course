@@ -144,6 +144,7 @@ EXCEPTION
         RETURN -1;
 END p_insert_logs;
 /
+SELECT p_insert_logs('SAMPLE TEST FOR FUNCTION ASSIGNMENT') FROM DUAL;
 
 
 

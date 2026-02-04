@@ -1,0 +1,3 @@
+--PAKAGES IN PL/SQL
+--Pakage is the schema object stored in the database.
+--it can contain related objects within it.
