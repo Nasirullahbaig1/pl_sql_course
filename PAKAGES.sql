@@ -60,11 +60,19 @@ CREATE OR REPLACE PACKAGE pkg_fisrt_package AS
 END pkg_fisrt_package;
 /
 
+--PACKAGE BODY
 --If the paakages specification has cursors or sub-programs, then the packages body is mendatory.
 --Both the package body and package specification must be in the same schema.
 --Each cursor or sub-program declared in the package specification must have implementation in the package body.
 --Package body can have additional curosr or sub-progarm which is private to package body and accessible to only package body.
-
+--Pakage body initilizatin part is only executed once3 when package is referenced fisrt time.
+--syntax:
+--  CREATE [OR REPLACE] PACKAGE BODY package_name IS | AS
+--      varaible declaration;
+--      subprogram implementations;
+--      [BEGIN
+--      EXCEPTION]
+--  END [<package_name>];
 
 
 
