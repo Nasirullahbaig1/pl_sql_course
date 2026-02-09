@@ -43,9 +43,21 @@
 --  declaration;
 --END pakage_name;
 
-CREATE OR REPLACE PACKAGE PKG_FISRT_PACKAGE AS
-    
-END PKG_FISRT_PACKAGE;
+CREATE OR REPLACE PACKAGE pkg_fisrt_package AS
+    v_my_fisrt_variable NUMBER;
+    PROCEDURE my_pkg_first_proc (
+        p_in_varchar IN VARCHAR2
+    );
+
+    PROCEDURE my_pkg_second_proc (
+        p_in_varchar IN VARCHAR2
+    );
+
+    FUNCTION my_first_pkg_function (
+        p_in_number IN NUMBER
+    ) RETURN NUMBER;
+
+END pkg_fisrt_package;
 /
 
 
