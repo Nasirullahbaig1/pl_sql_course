@@ -74,8 +74,15 @@ END pkg_fisrt_package;
 --      EXCEPTION]
 --  END [<package_name>];
 
-
-
+--Assignment part-1: Package
+--1. Create utility package to have three different procedure in it.
+--  all the varables should be public (in package specification)
+--  One procedure should output the second highest employees id and salary of the given departmnet id.
+--  One function to return Y/N if salary of employee is greater then the avarage salary of all employee of his department.
+--  One procedure to log the logs entry.
+--  third procedure should update the department_id of the second heighest employee of the department of the given employee to input department_id.
+--      call the first procedure and second procedure in it to fatch the employee/department details and log it in the logs table as per conviences.
+--  call different procedure of the package in anonymous block and try to use initilize method and access the variable.
 
 
 
