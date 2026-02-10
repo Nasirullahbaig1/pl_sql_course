@@ -73,7 +73,7 @@ END pkg_fisrt_package;
 --      [BEGIN
 --      EXCEPTION]
 --  END [<package_name>];
-
+/
 --Assignment part-1: Package
 --1. Create utility package to have three different procedure in it.
 --  all the varables should be public (in package specification)
@@ -83,9 +83,59 @@ END pkg_fisrt_package;
 --  third procedure should update the department_id of the second heighest employee of the department of the given employee to input department_id.
 --      call the first procedure and second procedure in it to fatch the employee/department details and log it in the logs table as per conviences.
 --  call different procedure of the package in anonymous block and try to use initilize method and access the variable.
+/
+CREATE OR REPLACE PACKAGE pkg_emp_utill_1 AS
+    V_DEPT_EMP_CNT         NUMBER;
+    PROCEDURE p_second_highest_emp (
+        p_in_department_id IN departments.department_id%TYPE,
+        p_out_emp_id       OUT employees.employee_id%TYPE,
+        p_out_emp_salary   OUT employees.salary%TYPE,
+        P_OUT_STATUS       OUT NUMBER
+    );
 
+END pkg_emp_utill_1;
+/
+CREATE OR REPLACE PACKAGE BODY pkg_emp_utill_1 AS
 
+    PROCEDURE p_second_highest_emp (
+        p_in_department_id IN departments.department_id%TYPE,
+        p_out_emp_id       OUT employees.employee_id%TYPE,
+        p_out_emp_salary   OUT employees.salary%TYPE,
+        p_out_status       OUT NUMBER
+    ) IS
+    BEGIN
+        SELECT
+            COUNT(1)
+        INTO v_dept_emp_cnt
+        FROM
+            employees
+        WHERE
+            department_id = p_in_department_id;
 
+        IF v_dept_emp_cnt < 2 THEN
+            p_out_status := -1;
+        ELSE
+            SELECT
+                employee_id,
+                salary
+            INTO
+                p_out_emp_id,
+                p_out_emp_salary
+            FROM
+                employees
+            WHERE
+                department_id = p_in_department_id
+            ORDER BY
+                salary DESC,
+                employee_id
+            OFFSET 1 ROW FETCH NEXT 1 ROW ONLY;
+
+        END IF;
+
+    END p_second_highest_emp;
+
+END pkg_emp_utill_1;
+/
 
 
 
