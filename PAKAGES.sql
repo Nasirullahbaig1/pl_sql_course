@@ -84,19 +84,28 @@ END pkg_fisrt_package;
 --      call the first procedure and second procedure in it to fatch the employee/department details and log it in the logs table as per conviences.
 --  call different procedure of the package in anonymous block and try to use initilize method and access the variable.
 /
+--SPECEFICATION
 CREATE OR REPLACE PACKAGE pkg_emp_utill_1 AS
     V_DEPT_EMP_CNT         NUMBER;
+    V_IS_SALARY_HIGH_THEN_DEPT_SALARY VARCHAR2 (1);
+    
+    --Procedure
     PROCEDURE p_second_highest_emp (
         p_in_department_id IN departments.department_id%TYPE,
         p_out_emp_id       OUT employees.employee_id%TYPE,
         p_out_emp_salary   OUT employees.salary%TYPE,
         P_OUT_STATUS       OUT NUMBER
     );
+    
+    --function
+    FUNCTION FUN_IS_SALARAY_ABOVE_AVG_DEPT_SALARY(P_IN_EMP_ID IN EMPLOYEES.EMPLOYEE_ID%TYPE) 
+    RETURN VARCHAR2;
 
 END pkg_emp_utill_1;
 /
+--BODY
 CREATE OR REPLACE PACKAGE BODY pkg_emp_utill_1 AS
-
+    --procedure
     PROCEDURE p_second_highest_emp (
         p_in_department_id IN departments.department_id%TYPE,
         p_out_emp_id       OUT employees.employee_id%TYPE,
@@ -104,6 +113,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_emp_utill_1 AS
         p_out_status       OUT NUMBER
     ) IS
     BEGIN
+        p_out_status := 0;
         SELECT
             COUNT(1)
         INTO v_dept_emp_cnt
@@ -133,10 +143,35 @@ CREATE OR REPLACE PACKAGE BODY pkg_emp_utill_1 AS
         END IF;
 
     END p_second_highest_emp;
+    
+    --function
+    FUNCTION FUN_IS_SALARAY_ABOVE_AVG_DEPT_SALARY(P_IN_EMP_ID IN EMPLOYEES.EMPLOYEE_ID%TYPE) 
+    RETURN VARCHAR2
+    IS 
+    BEGIN
+        --V_IS_SALARY_HIGH_THEN_DEPT_SALARY
+        SELECT CASE WHEN SALARY >= (SELECT AVG(SALARY) FROM EMPLOYEES 
+        WHERE DEPARTMENT_ID = (SELECT DEPARTMENT_ID FROM EMPLOYEES WHERE EMPLOYEE_ID = P_IN_EMP_ID))
+        THEN 'Y' 
+        ELSE 'N' INTO V_IS_SALARY_HIGH_THEN_DEPT_SALARY FROM EMPLOYEES WHERE EMPLOYEE_ID = P_IN_EMP_ID;
+        RETURN V_IS_SALARY_HIGH_THEN_DEPT_SALARY;
+    END FUN_IS_SALARAY_ABOVE_AVG_DEPT_SALARY;
+
 
 END pkg_emp_utill_1;
 /
-
+SET SERVEROUT ON
+DECLARE
+    V_EMP_ID EMPLOYEES.EMPLOYEE_ID%TYPE;
+    V_SALARY EMPLOYEES.SALARY%TYPE;
+    V_STATUS NUMBER :=0;
+BEGIN
+    pkg_emp_utill_1.p_second_highest_emp(90, V_EMP_ID, V_SALARY, V_STATUS);
+    DBMS_OUTPUT.PUT_LINE('STATUS: ' || V_STATUS);
+    DBMS_OUTPUT.PUT_LINE('EMP_ID: ' || V_EMP_ID);
+    DBMS_OUTPUT.PUT_LINE('SALARY: ' || V_SALARY);
+END;
+/
 
 
 
