@@ -175,6 +175,18 @@ END;
 /
 SELECT pkg_emp_utill_1.FUN_IS_SALARAY_ABOVE_AVG_DEPT_SALARY(101) FROM DUAL;
 SELECT * FROM EMPLOYEES;
+/
+--Assignment part-2:Package
+
+--1. Create package which the following details:
+--      one function to calculate the sum of the salary of all the employees except highest salaried employee of input departments.
+--      one private procedure to validate the uniquness of the employee data, input employee data to check if data can be inserted into employee table.
+--      one procedure to create the new employee using all data of employee as an input of it.
+--      one varaible to store the max salary from entire employee table and initialize it.
+--      one public function to assign the lowest salary to above varaible and return employee_id of lowest salaried employee.
+--      call different procedure of the package in anonymous block.
+--      use the package.procedure from the assignment part-1 to log the details.
+
 
 
 
