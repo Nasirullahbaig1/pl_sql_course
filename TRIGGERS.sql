@@ -3,4 +3,14 @@
 --What is trigger?
 --Trigger is stored in pl/sql block which is executed when some event occurs.
 --There can be multiple events on which trigger can be created.
-
+--DML on table
+    --INSERT
+    --UPDATE
+    --DELETE
+--DDL on table
+    --CREATE
+    --ALTER
+--SYSTEM EVENTS
+    --SHOTDOWN OR STARTUP
+--USER EVENTS
+    --LOGIN OR LOGOUT
