@@ -34,7 +34,7 @@
 --FOR EACH ROW specifies that trigger is row level trigger. row level trigger executed once for each row changed/inserted/deleted.
 --statement level trigger is the default trigger type and it is executed per statemnt regardless of number of records affected.
 --FOLLOWS or PRECEDES another trigger is used to define the sequaence of trigger in case multiple trigger is created on the same event.
-
+--WHEN clause is used to define the condition on which trigger should be executed.
 
 
 
