@@ -49,6 +49,32 @@
 select * from departments;
 alter table departments add is_active number(1) default 1 not null;
 update departments set is_active = 0 where department_id = 60 or department_id =90;
+commit;
+select * from employees;
+/
+CREATE OR REPLACE TRIGGER trg_employee_dept_id_active BEFORE
+    INSERT OR UPDATE ON employees
+    FOR EACH ROW
+    WHEN ( new.department_id IS NOT NULL )
+DECLARE
+    v_cnt NUMBER := 0;
+BEGIN
+    SELECT
+        COUNT(1)
+    INTO v_cnt
+    FROM
+        departments
+    WHERE
+            department_id = :new.department_id
+        AND is_active = 1;
+
+    IF v_cnt = 0 THEN
+        raise_application_error(-20011,
+                                'YOU CAN NOT ADD EMPLOYEE IN DEPARTMENT' || :new.department_id);
+    END IF;
+
+END;
+/
 
 
 
