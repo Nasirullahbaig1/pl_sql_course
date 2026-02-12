@@ -46,6 +46,9 @@
 --Exceptions are used to ristrict the event in trigger based on condition.
 --RAISE_APPLICATION_ERROR is mostly used to proveide the proper information and it automatically rollback the transaction.
 
+select * from departments;
+alter table departments add is_active number(1) default 1 not null;
+update departments set is_active = 0 where department_id = 60 or department_id =90;
 
 
 
