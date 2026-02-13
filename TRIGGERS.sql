@@ -75,6 +75,8 @@ BEGIN
 
 END;
 /
+--practical with ROW LEVEL TIRGGERS
+
 
 
 
