@@ -87,6 +87,25 @@ END TRG_EMPLOYEES_BIU_EMP_ID;
 
 --2. Create trigger on departments table to audit new department addition, department name/city change and department delection.
 --      audit data should go into assignment_logs table.
+CREATE OR REPLACE TRIGGER TRG_DEPARTMENT_BIUD_LOGS
+BEFORE INSERT OR UPDATE OR DELETE OF DEPARTMENT_NAME, LOCATION_ID ON DEPARTMENTS
+FOR EACH ROW
+BEGIN
+    IF INSERTING THEN 
+        INSERT INTO ASSIGNMENT_LOGS VALUES (ASSIGNMENT_LOG_SEQ, SYSTIMESTAMP, 
+            'TRG_DEPARTMENT_BIUD_LOGS --> INSERT --> ' || :NEW.DEPARTMENT_ID || ', ' || :NEW.DEPARTMENT_NAME || ', ' || NEW.LOCATION_ID);
+    ELSIF DELETING THEN
+           INSERT INTO ASSIGNMENT_LOGS VALUES (ASSIGNMENT_LOG_SEQ, SYSTIMESTAMP, 
+            'TRG_DEPARTMENT_BIUD_LOGS --> DELETE --> ' || :OLD.DEPARTMENT_ID || ', ' || :OLD.DEPARTMENT_NAME || ', ' || OLD.LOCATION_ID); 
+    ELSE
+        INSERT INTO ASSIGNMENT_LOGS VALUES (ASSIGNMENT_LOG_SEQ, SYSTIMESTAMP, 
+            'TRG_DEPARTMENT_BIUD_LOGS --> UPDATE --> ' || 
+            CASE WHEN :OLD.DEPARTMENT_NAME<> :NEW.DEPARTMENT_NAME THEN 'NAME CHAGE --> ' || OLD.DEPARTMENT_NAME END
+            CASE WHEN :OLD.LOCATION_ID<> :NEW.LOCATION_ID THEN 'NAME CHAGE --> ' || OLD.LOCATION_ID END
+            );
+    END IF;
+END TRG_DEPARTMENT_BIUD_LOGS;
+/
 --3. Create update trigger on salary change. Log the salary change into assignment_log table.
 --4. Create insert trigger on departments table to create default employee in the employees table.
 --5. Disable all the trigger created in the assignmnet. try to drop one of the trigger too.
@@ -94,7 +113,11 @@ END TRG_EMPLOYEES_BIU_EMP_ID;
 
 /
 SELECT EMPLOYEES_SEQ.NEXTVAL FROM DUAL;
-
+SELECT * FROM EMPLOYEES;
+SELECT * FROM DEPARTMENTS;
+SELECT * FROM ASSIGNMENT_LOGS;
+/
+--STATEMENT LEVEL TRIGGERS
 
 
 
