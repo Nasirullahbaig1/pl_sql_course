@@ -75,7 +75,25 @@ BEGIN
 
 END;
 /
---practical with ROW LEVEL TIRGGERS
+--Assignment: Row level trigger
+--1. Create trigger on employees table to fill emp_id using employees_seq and ignore any emp_id set in INSERT/UPDATE statemnet.
+CREATE OR REPLACE TRIGGER TRG_EMPLOYEES_BIU_EMP_ID
+BEFORE INSERT OR UPDATE OF EMPLOYEE_ID ON EMPLOYEES
+FOR EACH ROW
+BEGIN
+    :NEW.EMPLOYEE_ID := EMPLOYEES_SEQ.NEXTVAL;
+END TRG_EMPLOYEES_BIU_EMP_ID;
+/
+
+--2. Create trigger on departments table to audit new department addition, department name/city change and department delection.
+--      audit data should go into assignment_logs table.
+--3. Create update trigger on salary change. Log the salary change into assignment_log table.
+--4. Create insert trigger on departments table to create default employee in the employees table.
+--5. Disable all the trigger created in the assignmnet. try to drop one of the trigger too.
+
+
+/
+SELECT EMPLOYEES_SEQ.NEXTVAL FROM DUAL;
 
 
 
