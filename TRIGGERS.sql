@@ -118,7 +118,11 @@ SELECT * FROM DEPARTMENTS;
 SELECT * FROM ASSIGNMENT_LOGS;
 /
 --STATEMENT LEVEL TRIGGERS
-
+--Statement level trigger is executed per stetement regardless of the number of records affected.
+--Statement level triggers are not used for data level activities but used to apply few restriction on the
+--few operations on the table and allow to gather data of operations.
+--It is the default trigger type.
+--As statement level trigger is not used on data level, NEW and OLD reference varaible can not be used in the statement level trigger.
 
 
 
