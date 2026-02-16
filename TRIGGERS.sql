@@ -142,9 +142,11 @@ SELECT * FROM DEPARTMENTS;
 --1. Create statement level trigger to disallow anyone to delete any of the department.
 --2. Create statement level trigger to disallow update in employee salary between 1-7 of the month.
 --3. Create statement level trigger on employees table to allow update on employees table to allow update on employees only 
---      if more then 3 departments are active.
+--      if more then 3 departments are active and log entry when employees data are updated, which will be usefull to create the report on the
+--      employee data update frequency.
 --4. Disable all the created in this assignment.
 
+CREATE OR REPLACE TRIGGER 
 
 
 
