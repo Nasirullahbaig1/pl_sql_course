@@ -149,8 +149,9 @@ END TRG_DEPT_SIMT_NO_DELETE_BEF;
 /
 SELECT * FROM DEPARTMENTS;
 DELETE FROM DEPARTMENTS WHERE DEPARTMENT_ID = 300;
-
+/
 --2. Create statement level trigger to disallow update in employee salary between 1-7 of the month.
+
 --3. Create statement level trigger on employees table to allow update on employees table to allow update on employees only 
 --      if more then 3 departments are active and log entry when employees data are updated, which will be usefull to create the report on the
 --      employee data update frequency.
