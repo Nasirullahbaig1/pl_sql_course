@@ -151,6 +151,16 @@ SELECT * FROM DEPARTMENTS;
 DELETE FROM DEPARTMENTS WHERE DEPARTMENT_ID = 300;
 /
 --2. Create statement level trigger to disallow update in employee salary between 1-7 of the month.
+CREATE OR REPLACE TRIGGER TRG_EMP_SALARY_UPDATE_BS
+BEFORE UPDATE OF SALARY ON EMPLOYEES
+BEGIN
+    IF EXTRACT (DAY FROM SYSDATE) <= 7 THEN
+        RAISE_APPLICATION_ERROR(-20012, 'ITS NOT ALLOWED TO UPDATE EMPLOYEE DATA DURING THE FIRST WEEK OF THE MONTH....');
+    END IF;
+END TRG_EMP_SALARY_UPDATE_BS;
+/
+SELECT TO_NUMBER(TO_CHAR(SYSDATE,'DD')) FROM DUAL;
+SELECT EXTRACT (DAY FROM SYSDATE) FROM DUAL;
 
 --3. Create statement level trigger on employees table to allow update on employees table to allow update on employees only 
 --      if more then 3 departments are active and log entry when employees data are updated, which will be usefull to create the report on the
