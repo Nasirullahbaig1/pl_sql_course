@@ -159,13 +159,23 @@ BEGIN
     END IF;
 END TRG_EMP_SALARY_UPDATE_BS;
 /
-SELECT TO_NUMBER(TO_CHAR(SYSDATE,'DD')) FROM DUAL;
-SELECT EXTRACT (DAY FROM SYSDATE) FROM DUAL;
+UPDATE EMPLOYEES SET SALARY = 30000 WHERE EMPLOYEE_ID = 101;
 
 --3. Create statement level trigger on employees table to allow update on employees table to allow update on employees only 
 --      if more then 3 departments are active and log entry when employees data are updated, which will be usefull to create the report on the
 --      employee data update frequency.
 --4. Disable all the created in this assignment.
+
+--COMPOUND TRIGGERS 
+--compoud trigger combines following triggers:
+--1. before statement trigger 
+--2. before row level trigger
+--3. after row level trigger
+--4. after statement trigger
+
+--compound trigger can be used to resolve the mutating table problem, collect the data at row level and process in batch,
+--  create one trigger body for multiple trigger to simplify the implementation.
+
 
 
 
