@@ -123,6 +123,27 @@ SELECT * FROM ASSIGNMENT_LOGS;
 --few operations on the table and allow to gather data of operations.
 --It is the default trigger type.
 --As statement level trigger is not used on data level, NEW and OLD reference varaible can not be used in the statement level trigger.
+CREATE OR REPLACE TRIGGER TRG_EMPLOYEES_DELETE_RESTRICTION
+BEFORE DELETE ON EMPLOYEES
+DECLARE
+    V_CNT NUMBER := 0;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE
+    SELECT COUNT(1) INTO V_CNT FROM DEPARTMENTS WHERE IS_ACTIVE = 0;
+    IF V_CNT > 0 THEN
+        RAISE_APPLICATION_ERROR(-20012, 'YOU CAN NOT DELETE EMPLOYEE WHEN ONE OF THE DEPT IS INACTIVE');
+    END IF;
+END;
+/
+SELECT * FROM EMPLOYEES;
+SELECT * FROM DEPARTMENTS;
+/
+--Assignemt: statement level trigger:
+--1. Create statement level trigger to disallow anyone to delete any of the department.
+--2. Create statement level trigger to disallow update in employee salary between 1-7 of the month.
+--3. Create statement level trigger on employees table to allow update on employees table to allow update on employees only 
+--      if more then 3 departments are active.
+--4. Disable all the created in this assignment.
 
 
 
