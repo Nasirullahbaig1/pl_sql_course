@@ -176,7 +176,9 @@ UPDATE EMPLOYEES SET SALARY = 30000 WHERE EMPLOYEE_ID = 101;
 --compound trigger can be used to resolve the mutating table problem, collect the data at row level and process in batch,
 --  create one trigger body for multiple trigger to simplify the implementation.
 
-
+--CREATE OR REPLACE TRIGGER <trigger name>
+--for <insert | update | delate><of column_name>
+--on <tablename>
 
 
 
