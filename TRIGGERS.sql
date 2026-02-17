@@ -180,10 +180,18 @@ UPDATE EMPLOYEES SET SALARY = 30000 WHERE EMPLOYEE_ID = 101;
 --for <insert | update | delate><of column_name>
 --on <tablename>
 
-
-
-
-
+--COMPOUND TRIGGER
+    --<declaration section>
+--BEFORE STATEMENT IS
+    --<declaration section>
+--BEGIN
+    --<before section>
+--END BEFORE STATEMENT;
+--BEFORE EACH ROW IS
+    --<declaration section>
+--BEGIN
+    --<before each row section>
+--END BEFORE EACH ROW;
 
 
 
