@@ -192,10 +192,19 @@ UPDATE EMPLOYEES SET SALARY = 30000 WHERE EMPLOYEE_ID = 101;
 --BEGIN
     --<before each row section>
 --END BEFORE EACH ROW;
-
-
-
-
+---------------------------------------------------------
+--AFTER EACH ROW IS
+    --<declaration section>
+--BEGIN
+    --<after each row section>
+--END AFTER EACH ROW;
+--AFTER STATEMENT IS
+    --<declaration section>
+--BEGIN
+    --<after section>
+--END AFTER STATEMENT;
+--END;
+/
 
 
 
