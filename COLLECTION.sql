@@ -7,4 +7,8 @@
 --3. Unbounded --> Number of elements in the array is not predefined.
 
 --Associative array can be indexed by BINARY_INTEGER, PLS_INTERGER, or VARCHAR2.
-
+   
+   
+   
+   
+   
