@@ -35,6 +35,10 @@ END;
 --unbounded number of elements in the array is not perdefined.
 --Nested table can be declared at database level too.
 
+--VARRAY IN PL/SQL
+--single dimension --> single column of data in each row.
+--dense --> elements are countinuous. there is no gaps between element.
+--bounded --> number of elements in the array is predefined.
 
    
    
