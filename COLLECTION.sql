@@ -26,6 +26,16 @@ BEGIN
     V_INDEX_AA := V_TYPE_AA_DEPT.NEXT(V_INDEX_AA);
     DBMS_OUTPUT.PUT_LINE(V_INDEX_AA);   
 END;
+/
+
+--NESTED TABLES IN PL/SQL
+--single dimension single column of data in each row.
+--sparse elements are dense initially but it can become sparese as elements can be removed from in between. 
+    --there can be gaps between element.
+--unbounded number of elements in the array is not perdefined.
+--Nested table can be declared at database level too.
+
+
    
    
    
