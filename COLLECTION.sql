@@ -40,6 +40,14 @@ END;
 --dense --> elements are countinuous. there is no gaps between element.
 --bounded --> number of elements in the array is predefined.
 
+--COLLECTION METHODS
+--varity of methods are available for collection. Methods are applicable on few collection types but not all.
+
+--EXISTS(n): Return true if element at index n exist.
+--COUNT: Returns the number of elements in the collection.
+--LIMIT: Returns the maximum number of elements for a VARRAY, OR NULL for nested tables.
+--PRIOR(n): Returns the index of the element prior to the specified element.
+
    
    
    
