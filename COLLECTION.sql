@@ -48,6 +48,35 @@ END;
 --LIMIT: Returns the maximum number of elements for a VARRAY, OR NULL for nested tables.
 --PRIOR(n): Returns the index of the element prior to the specified element.
 
+set serverout on;
+declare 
+    type nt_number is table of number;
+    v_nt_number nt_number := nt_number (1, 2, 3, 4, 5);
+begin
+    if v_nt_number.exists(40) then
+        dbms_output.put_line('Element exists');
+    else
+        dbms_output.put_line('Element do not exists');
+    end if;
+    
+    dbms_output.put_line('v_nt_number.count = ' || v_nt_number.count);
+end;
+/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
    
    
